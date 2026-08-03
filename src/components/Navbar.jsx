@@ -45,15 +45,18 @@ const Navbar = () => {
         </div>
         <ul className="hidden items-center gap-4 md:flex">
           <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
             <Link href="/all-facilities">All Facilities</Link>
           </li>
           <li>
-            <Link href="#" className="font-medium text-accent" aria-current="page">
-              Dashboard
+            <Link href="/my-bookings" className="font-medium text-accent" aria-current="page">
+              My Bookings
             </Link>
           </li>
           <li>
-            <Link href="#">Pricing</Link>
+            <Link href="/add-facility">Add Facility</Link>
           </li>
         </ul>
         <div className="hidden items-center gap-4 md:flex">
@@ -65,18 +68,24 @@ const Navbar = () => {
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
             <li>
-              <Link href="#" className="block py-2">
+              <Link href="/" className="block py-2">
+                Home
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/all-facilities" className="block py-2">
                 All Facilities
               </Link>
             </li>
             <li>
-              <Link href="#" className="block py-2 font-medium text-accent">
-                Dashboard
+              <Link href="/my-bookings" className="block py-2">
+                My Bookings
               </Link>
             </li>
             <li>
-              <Link href="#" className="block py-2">
-                Pricing
+              <Link href="/add-facility" className="block py-2 font-medium text-accent">
+                Add Facility
               </Link>
             </li>
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
