@@ -7,6 +7,7 @@ const AllFacilitiesPage = async() => {
     return (
         <div>
             <h1>All Facilities</h1>
+            <h2>Facilities{allFacilitiesData.length}</h2>
         </div>
     );
 };
