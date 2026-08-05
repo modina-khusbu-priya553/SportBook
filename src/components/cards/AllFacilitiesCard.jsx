@@ -37,10 +37,10 @@ const AllFacilitiesCard = ({facility}) => {
                 <h2 className="text-2xl text-blue-950 font-bold">${price_per_hour.toFixed(2)}</h2>
             </Card.Header>
             <Card.Footer>
-                <div className="flex flex-col gap-2 md:flex-row md:justify-between">
+                <div className="flex items-center gap-2 md:flex-row md:justify-between">
                     <Button variant='outline' 
                         className="hover:bg-blue-950 hover:text-white text-blue-950 border-blue-950 rounded-lg">
-                        <Link href="/">View Details</Link>
+                        <Link href={`/all-facilities/${facility._id}`}>View Details</Link>
                     </Button>
                     <Button className="rounded-lg bg-[#22C55E] hover:bg-[#16A34A] text-white">
                         <Link href="/">

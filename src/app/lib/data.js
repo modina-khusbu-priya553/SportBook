@@ -3,3 +3,10 @@ export const getFacilitiesData = async () => {
     const data = await res.json()
     return data
 }
+
+// 2: details api with id
+export const getFacilityDetails = async (facilityId) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facilities/${facilityId}`)
+    const data = await res.json()
+    return data 
+}
