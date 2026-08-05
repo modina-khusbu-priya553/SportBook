@@ -1,3 +1,4 @@
+'use server'
 // 1: post api for add facilities
 
 export const getPostData = async(formData) =>{
@@ -12,5 +13,6 @@ export const getPostData = async(formData) =>{
     });
 
     const data = await res.json();
+    console.log(data)
     return data;
 }

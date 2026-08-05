@@ -96,7 +96,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-              <Link href="#" className="block py-2">
+              <Link href="/login" className="block py-2">
                 Login
               </Link>
               <Button className="w-full">Sign Up</Button>
