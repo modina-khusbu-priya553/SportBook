@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 
 const AllFacilitiesCard = ({facility}) => {
-    const {name, sport_type, description, available_slots, capacity, price_per_hour, location, image} = facility;
+    const {_id,name, sport_type, description, available_slots, capacity, price_per_hour, location, image} = facility;
     return (
         <Card className="rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
             <figure className='relative w-full aspect-square'>
@@ -40,7 +40,7 @@ const AllFacilitiesCard = ({facility}) => {
                 <div className="flex items-center gap-2 md:flex-row md:justify-between">
                     <Button variant='outline' 
                         className="hover:bg-blue-950 hover:text-white text-blue-950 border-blue-950 rounded-lg">
-                        <Link href={`/all-facilities/${facility._id}`}>View Details</Link>
+                        <Link href={`/all-facilities/${_id}`}>View Details</Link>
                     </Button>
                     <Button className="rounded-lg bg-[#22C55E] hover:bg-[#16A34A] text-white">
                         <Link href="/">
