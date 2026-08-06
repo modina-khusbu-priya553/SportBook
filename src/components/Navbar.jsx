@@ -67,7 +67,7 @@ const Navbar = () => {
             </li>
             </ul>
             <div className="hidden items-center gap-4 md:flex">
-            <Button variant="outline"><Link href="#">Login</Link></Button>
+            <Button variant="outline"><Link href="/login">Login</Link></Button>
             <Button className="bg-blue-950">Sign Up</Button>
             </div>
         </header>

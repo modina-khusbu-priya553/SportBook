@@ -9,7 +9,7 @@ const AddFacilityCard = ({postFacilityAction}) => {
                     <p className='md:text-lg text-gray-500 line-clamp-2'>List your sports facility and make it available <br/> for players to discover and book anytime.</p>
                 </div>
 
-                <Card className='bg-white'>
+                <Card>
                     <form id="add-facility-form" action={postFacilityAction}>
                          <div className='flex flex-col md:flex-row justify-between items-center gap-8'>
                             <div className='w-full space-y-8'>
