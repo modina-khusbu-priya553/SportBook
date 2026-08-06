@@ -27,7 +27,15 @@ const Login = () => {
         if(error){
             alert(error.message)
         }
-    }
+    };
+
+    const handleGoogleLogin = async() =>{
+            const data = await authClient.signIn.social({
+            provider: "google",
+            
+        });
+    
+        };
     return (
         <div  className="bg-[#F7F7F2]">
             <div className='flex flex-col items-center justify-center gap-6 container mx-auto py-10 md:py-15 px-4'>
@@ -83,7 +91,7 @@ const Login = () => {
                         </div>
 
                         <div className="flex gap-2">
-                            <Button type="submit" className="w-full rounded-md" variant="outline">
+                            <Button onSubmit={handleGoogleLogin} type="submit" className="w-full rounded-md" variant="outline">
                             <FcGoogle />
                             Sign up with Google
                             </Button>

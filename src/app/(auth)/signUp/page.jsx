@@ -16,12 +16,28 @@ const SignUp = () => {
         const { data, error } = await authClient.signUp.email({
             name: user.name, // required
             email: user.email, // required
-            password: user.email, // required
+            password: user.password, // required
             image: user.image,
         });
 
         console.log(data, error)
-    }
+
+         if(data){
+            redirect('/');
+        }
+        if(error){
+            alert(error.message)
+        }
+
+    };
+
+    const handleGoogleSignUp = async() =>{
+        const data = await authClient.signIn.social({
+        provider: "google",
+        
+    });
+
+    };
 
     return (
         <div className="bg-[#F7F7F2]">
@@ -102,7 +118,7 @@ const SignUp = () => {
                                 </div>
         
                                 <div className="flex gap-2">
-                                    <Button type="submit" className="w-full rounded-md" variant="outline">
+                                    <Button onSubmit={handleGoogleSignUp} type="submit" className="w-full rounded-md" variant="outline">
                                     <FcGoogle />
                                     Sign up with Google
                                     </Button>
