@@ -3,7 +3,7 @@ import {Card, Input, Label, ListBox, TextField, Select, TextArea, Button, Descri
 const AddFacilityCard = ({postFacilityAction}) => {
     return (
         <div>
-            <div className='flex flex-col py-10 px-5 md:py-20 container mx-auto'>
+            <div className='flex flex-col py-10 px-5 md:py-15 container mx-auto'>
                 <div className='flex flex-col gap-10 px-2 py-4'>
                     <h2 className='text-2xl md:text-5xl text-center font-bold'>Add New Facility</h2>
                     <p className='md:text-lg text-gray-500 line-clamp-2'>List your sports facility and make it available <br/> for players to discover and book anytime.</p>

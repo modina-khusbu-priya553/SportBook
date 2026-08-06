@@ -51,7 +51,7 @@ const FacilitiesDetails = async ({ params }) => {
 
                             {/* Price */}
                             <div className="text-right">
-                                <p className="text-xl md:text-4xl font-bold text-gray-900">
+                                <p className="text-xl md:text-4xl font-bold text-gray-800">
                                     ${price_per_hour} <span className="text-sm md:text-lg font-normal">/hr</span>
                                 </p>
                             </div>

@@ -30,9 +30,9 @@ const Login = () => {
     }
     return (
         <div  className="bg-[#F7F7F2]">
-            <div className='flex flex-col items-center justify-center gap-6 container mx-auto py-20'>
+            <div className='flex flex-col items-center justify-center gap-6 container mx-auto py-10 md:py-15 px-4'>
                 <div className='text-center'>
-                    <h1 className='text-3xl'>Login to SportNest</h1>
+                    <h1 className='text-2xl md:text-4xl text-gray-800'>Login to SportNest</h1>
                 </div>
 
                 <div>

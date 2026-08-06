@@ -68,7 +68,7 @@ const Navbar = () => {
             </ul>
             <div className="hidden items-center gap-4 md:flex">
             <Button variant="outline"><Link href="/login">Login</Link></Button>
-            <Button className="bg-blue-950">Sign Up</Button>
+            <Button className="bg-blue-950"><Link className=" text-white" href='/signUp'>Sign Up</Link></Button>
             </div>
         </header>
       {isMenuOpen && (
@@ -99,7 +99,7 @@ const Navbar = () => {
               <Link href="/login" className="block py-2">
                 Login
               </Link>
-              <Button className="w-full">Sign Up</Button>
+              <Button className="w-full"><Link href='/signUp'>Sign Up</Link></Button>
             </li>
           </ul>
         </div>
