@@ -1,18 +1,15 @@
 import React from "react";
 import { getFacilityDetails } from "@/app/lib/data";
-import { Button, Chip } from "@heroui/react";
+import { Chip } from "@heroui/react";
 import { MapPin, Users, Clock } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { FiExternalLink } from "react-icons/fi";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import BookingFormCard from "@/components/cards/BookingFormCard";
+import { postBookingData } from "@/app/lib/action";
 
 const FacilitiesDetails = async ({ params }) => {
   const { detailsId } = await params;
   const facilityDetails = await getFacilityDetails(detailsId);
   const {
-    _id,
     name,
     sport_type,
     description,
@@ -86,7 +83,7 @@ const FacilitiesDetails = async ({ params }) => {
 
           {/* right */}
 
-          <BookingFormCard facilityDetails={facilityDetails}></BookingFormCard>
+          <BookingFormCard postBookingAction={postBookingData} facilityDetails={facilityDetails}></BookingFormCard>
         </div>
       </div>
     </div>

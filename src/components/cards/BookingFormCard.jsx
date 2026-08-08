@@ -15,15 +15,16 @@ import {
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
+import { toast } from "react-toastify";
 
-const BookingFormCard = ({ facilityDetails }) => {
+const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
     
   // user info
   const { data } = authClient.useSession();
   const user = data?.user;
 
   console.log(user);
-  
+
   const { _id, name, available_slots, capacity, location, image,price_per_hour, } =
     facilityDetails;
 
@@ -34,6 +35,10 @@ const BookingFormCard = ({ facilityDetails }) => {
 
   //   booking handle
   const handleBooking = async() =>{
+    if (selectedSlots.size === 0 || !bookingDate) {
+    alert("Please select date and at least one time slot");
+    return;
+  }
     const bookingData = {
         userId: user?.id,
         userImage: user?.image,
@@ -45,10 +50,13 @@ const BookingFormCard = ({ facilityDetails }) => {
         image,
         capacity,
         location,
-        bookingDate: new Date(bookingDate)
+        bookingDate: new Date(bookingDate),
+        timeSlots: [...selectedSlots],
 
     }
     console.log(bookingData)
+    await postBookingAction(bookingData);
+     toast.success('Booking successful!');
   }
 
   const handleRemoveSlot = (slot) => {
@@ -69,7 +77,7 @@ const BookingFormCard = ({ facilityDetails }) => {
       </div>
 
       <div>
-        <form onSubmit={handleBooking} className="space-y-4">
+        <form className="space-y-4">
           <TextField
             className="w-full"
             name="name"
@@ -228,10 +236,11 @@ const BookingFormCard = ({ facilityDetails }) => {
                         Cancel
                       </Button>
                       <Button
-                        type="submit"
+
+                        onClick={handleBooking}
+                        type="button"
                         className="bg-[#22C55E] hover:bg-[#16A34A] text-white"
                         variant="primary"
-                        form="add-facility-form"
                       >
                         Confirm Booking
                       </Button>
