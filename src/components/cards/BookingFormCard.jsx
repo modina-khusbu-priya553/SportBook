@@ -35,10 +35,14 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
 
   //   booking handle
   const handleBooking = async() =>{
-    if (selectedSlots.size === 0 || !bookingDate) {
-    alert("Please select date and at least one time slot");
+    if (selectedSlots.size === 0) {
+    toast.error("Please select at least one time slot");
     return;
-  }
+    }
+    if( !bookingDate){
+        toast.error("Please select date");
+        return;
+    }
     const bookingData = {
         userId: user?.id,
         userImage: user?.image,
@@ -236,7 +240,7 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
                         Cancel
                       </Button>
                       <Button
-
+                        slot="close"
                         onClick={handleBooking}
                         type="button"
                         className="bg-[#22C55E] hover:bg-[#16A34A] text-white"

@@ -14,7 +14,7 @@ import {
 const AddFacilityCard = ({ postFacilityAction }) => {
   return (
     <div>
-      <div className="flex flex-col py-10 px-5 md:py-15 container mx-auto">
+      <div className="flex flex-col py-10 px-5 md:py-15 max-w-7xl mx-auto">
         <div className="flex flex-col gap-10 px-2 py-4">
           <h2 className="text-2xl md:text-5xl text-center font-bold">
             Add New Facility

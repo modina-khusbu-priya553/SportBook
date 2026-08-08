@@ -10,3 +10,10 @@ export const getFacilityDetails = async (facilityId) => {
     const data = await res.json()
     return data 
 }
+
+// bookings api with userId
+export const getBookings = async (userId) =>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${userId}`)
+    const data = await res.json()
+    return data 
+}
