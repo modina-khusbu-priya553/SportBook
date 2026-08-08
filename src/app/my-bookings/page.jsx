@@ -1,15 +1,21 @@
 import React from "react";
 import { Button, Card, CloseButton } from "@heroui/react";
 import { getBookings } from "@/app/lib/data";
+import { auth } from "../lib/auth";
+import { headers } from "next/headers";
+
 
 const MyBookings = async () => {
 
     // user info
-      const { data } = authClient.useSession();
-      const user = data?.user;
+    const session = await auth.api.getSession({
+    headers: await headers() // you need to pass the headers object.
+    })
+      const user = session?.user;
       const userId = user?.id
   const bookingDetails = await getBookings(userId);
   console.log(bookingDetails)
+  console.log(user)
   return (
     <div className="bg-[#F7F7F2]">
       <Card className="items-stretch md:flex-row max-w-7xl mx-auto">
