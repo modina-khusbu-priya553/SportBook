@@ -3,7 +3,13 @@ import { Button, Card, CloseButton } from "@heroui/react";
 import { getBookings } from "@/app/lib/data";
 
 const MyBookings = async () => {
-  const bookingDetails = await getBookings();
+
+    // user info
+      const { data } = authClient.useSession();
+      const user = data?.user;
+      const userId = user?.id
+  const bookingDetails = await getBookings(userId);
+  console.log(bookingDetails)
   return (
     <div className="bg-[#F7F7F2]">
       <Card className="items-stretch md:flex-row max-w-7xl mx-auto">
