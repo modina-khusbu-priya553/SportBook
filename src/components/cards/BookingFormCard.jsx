@@ -14,22 +14,42 @@ import {
 } from "@heroui/react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
+import { authClient } from "@/app/lib/auth-client";
 
 const BookingFormCard = ({ facilityDetails }) => {
-  const {
-    _id,
-    name,
-    sport_type,
-    description,
-    available_slots,
-    capacity,
-    price_per_hour,
-    location,
-    image,
-  } = facilityDetails;
+    
+  // user info
+  const { data } = authClient.useSession();
+  const user = data?.user;
+
+  console.log(user);
+  
+  const { _id, name, available_slots, capacity, location, image,price_per_hour, } =
+    facilityDetails;
+
+  const [bookingDate, setBookingDate] = useState(null);
 
   const [selectedSlots, setSelectedSlots] = useState(new Set());
   const totalPrice = selectedSlots.size * price_per_hour;
+
+  //   booking handle
+  const handleBooking = async() =>{
+    const bookingData = {
+        userId: user?.id,
+        userImage: user?.image,
+        userName: user?.name,
+        userEmail: user?.email,
+        _id,
+        totalPrice,
+        price_per_hour,
+        image,
+        capacity,
+        location,
+        bookingDate: new Date(bookingDate)
+
+    }
+    console.log(bookingData)
+  }
 
   const handleRemoveSlot = (slot) => {
     const updated = new Set(selectedSlots);
@@ -40,14 +60,16 @@ const BookingFormCard = ({ facilityDetails }) => {
   return (
     <div className="space-y-8 p-6 md:p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white rounded-lg">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-gray-800">Reserve Your Time Slot</h2>
+        <h2 className="text-3xl font-bold text-gray-800">
+          Reserve Your Time Slot
+        </h2>
         <p className="text-gray-500">
           Choose a suitable date and time to secure your booking.
         </p>
       </div>
 
       <div>
-        <form className="space-y-4">
+        <form onSubmit={handleBooking} className="space-y-4">
           <TextField
             className="w-full"
             name="name"
@@ -62,7 +84,12 @@ const BookingFormCard = ({ facilityDetails }) => {
             />
           </TextField>
 
-          <DatePicker className="w-full" name="date">
+          <DatePicker
+            onChange={setBookingDate}
+            isRequired
+            className="w-full"
+            name="date"
+          >
             <Label>BOOKING DATE</Label>
             <DateField.Group
               className="border rounded-md px-3 py-2 flex items-center justify-between
