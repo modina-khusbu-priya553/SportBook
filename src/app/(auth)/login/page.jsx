@@ -91,7 +91,7 @@ const Login = () => {
                         </div>
 
                         <div className="flex gap-2">
-                            <Button onSubmit={handleGoogleLogin} type="submit" className="w-full rounded-md" variant="outline">
+                            <Button onClick={handleGoogleLogin} type="button" className="w-full rounded-md" variant="outline">
                             <FcGoogle />
                             Sign up with Google
                             </Button>

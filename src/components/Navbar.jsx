@@ -1,11 +1,19 @@
 'use client'
 import React from 'react';
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link, Button, Avatar } from "@heroui/react";
 import LogoName from '../../public/asset/logoname.png';
 import Image from 'next/image';
+import { authClient } from '@/app/lib/auth-client';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const { data } = authClient.useSession();
+    const user = data?.user;
+
+    const handleSignOut = async() =>{
+      await authClient.signOut();
+    }
     return (
         <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
         <header className="flex container mx-auto  items-center justify-between p-4">
@@ -67,8 +75,17 @@ const Navbar = () => {
             </li>
             </ul>
             <div className="hidden items-center gap-4 md:flex">
-            <Button variant="outline"><Link href="/login">Login</Link></Button>
-            <Button className="bg-blue-950"><Link className=" text-white" href='/signUp'>Sign Up</Link></Button>
+                <span><Link>Profile</Link></span>
+                {user ? <>
+                        <Avatar>
+                            <Avatar.Image alt={user?.name} src={user?.image} />
+                            <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
+                        </Avatar>
+                        <Button onClick={handleSignOut} variant='primary' className="bg-[#22C55E] hover:bg-[#16A34A] text-white">Sign Out</Button>
+                  </> :<>
+                    <Button variant="outline" className="border-[#22C55E]"><Link href="/login" className="text-[#16A34A]">Login</Link></Button>
+                    <Button className="bg-blue-950"><Link className=" text-white" href='/signUp'>Sign Up</Link></Button>
+                  </>}
             </div>
         </header>
       {isMenuOpen && (
@@ -95,12 +112,21 @@ const Navbar = () => {
                 Add Facility
               </Link>
             </li>
-            <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-              <Link href="/login" className="block py-2">
-                Login
-              </Link>
-              <Button className="w-full"><Link href='/signUp'>Sign Up</Link></Button>
-            </li>
+            <li><Link href={'/profile'}>Profile</Link></li>
+              {user ? <><li>
+                        <Avatar>
+                            <Avatar.Image alt={user?.name} src={user?.image} />
+                            <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
+                        </Avatar>
+                    </li>
+                    <li><Button onClick={handleSignOut} variant='outline'  className="bg-[#22C55E] hover:bg-[#16A34A] text-white">Sign Out</Button>
+                    </li> </> : <>
+                    <li>   
+                        <Link className="text-[#16A34A] border-[#22C55E]" href={'/login'}>Login</Link>
+                    </li>
+                    <li className="bg-blue-950 p-2 rounded-2xl text-center"><Link className=" text-white" href={'/signUp'}>Sign Up</Link>
+                    </li>
+              </>}
           </ul>
         </div>
       )}

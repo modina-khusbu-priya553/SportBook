@@ -5,6 +5,7 @@ import {Button, FieldError, Form, Input, Label, Separator, TextField} from "@her
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import { authClient } from '@/app/lib/auth-client';
+import { redirect } from 'next/navigation';
 
 const SignUp = () => {
 
@@ -118,7 +119,7 @@ const SignUp = () => {
                                 </div>
         
                                 <div className="flex gap-2">
-                                    <Button onSubmit={handleGoogleSignUp} type="submit" className="w-full rounded-md" variant="outline">
+                                    <Button onClick={handleGoogleSignUp} type="button" className="w-full rounded-md" variant="outline">
                                     <FcGoogle />
                                     Sign up with Google
                                     </Button>

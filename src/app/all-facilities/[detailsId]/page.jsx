@@ -1,110 +1,96 @@
-import React from 'react';
-import { getFacilityDetails } from '@/app/lib/data';
-import { Card, Button, Chip } from "@heroui/react";
-import { Heart, MapPin, Users, Clock } from "lucide-react";
-import Image from 'next/image';
-import Link from 'next/link';
-import { FiExternalLink } from 'react-icons/fi';
-import { FaArrowLeftLong } from 'react-icons/fa6';
+import React from "react";
+import { getFacilityDetails } from "@/app/lib/data";
+import { Button, Chip } from "@heroui/react";
+import { MapPin, Users, Clock } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { FiExternalLink } from "react-icons/fi";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import BookingFormCard from "@/components/cards/BookingFormCard";
 
 const FacilitiesDetails = async ({ params }) => {
-    const { detailsId } = await params;
-    const facilityDetails = await getFacilityDetails(detailsId);
-    const {
-        _id,
-        name,
-        sport_type,
-        description,
-        available_slots,
-        capacity,
-        price_per_hour,
-        location,
-        image,
-    } = facilityDetails;
+  const { detailsId } = await params;
+  const facilityDetails = await getFacilityDetails(detailsId);
+  const {
+    _id,
+    name,
+    sport_type,
+    description,
+    available_slots,
+    capacity,
+    price_per_hour,
+    location,
+    image,
+  } = facilityDetails;
 
-    return (
-        <div className="bg-[#F7F7F2]">
-            <div className="container mx-auto py-20 px-10 md:px-20">
-                <Card className="w-full flex flex-col justify-between md:flex-row overflow-hidden shadow-sm">
-                    {/* Left: Image */}
-                    <div className="relative w-full md:w-1/3 h-[220px] md:h-auto flex-shrink-0">
-                        <Image
-                            src={image}
-                            alt={name}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                    </div>
-                    
-                    {/* Right: Details */}
-                    <Card className='w-full space-y-3'>
-                        <div className="flex justify-between items-start gap-2">
-                            <div className='space-y-3'>
-                                <h2 className="text-2xl md:text-4xl font-bold text-gray-800">
-                                    {name}
-                                </h2>
-                                <Chip size="lg" variant="flat" color="primary" className="mt-1 md:text-lg">
-                                    {sport_type}
-                                </Chip>
-                            </div>
+  return (
+    <div className="bg-[#F7F7F2]">
+      <div className="container mx-auto py-10 md:py-15">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 p-6">
+          {/* left */}
+          <div className="bg-white px-6 shadow-lg space-y-4 rounded-lg p-6 w-full md:w-auto">
+            <Image
+              src={image}
+              alt={name}
+              width={400}
+              height={400}
+              className="object-cover rounded-xl w-full h-64 "
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <h2 className="text-lg md:text-2xl font-bold text-gray-800">
+              {name}
+            </h2>
 
-                            {/* Price */}
-                            <div className="text-right">
-                                <p className="text-xl md:text-4xl font-bold text-gray-800">
-                                    ${price_per_hour} <span className="text-sm md:text-lg font-normal">/hr</span>
-                                </p>
-                            </div>
-                        </div>
+            <div className="flex items-center justify-center gap-4 text-gray-600">
+              <span className="flex items-center gap-1 bg-gray-100 p-3 rounded-xl w-full">
+                <MapPin size={20} /> Location:{" "}
+                <h2 className="text-black font-semibold">{location}</h2>
+              </span>
 
-                        <p className="md:text-lg text-gray-500 line-clamp-2">
-                            {description}
-                        </p>
-
-                        <div className="flex flex-col gap-3">
-                                <span className="flex items-center gap-1 text-lg text-gray-600 font-medium">
-                                    <Clock size={20} /> Available Slots
-                                </span>
-                                <div className="flex md:flex-row flex-col gap-2">
-                                    {available_slots.map((slot, index) => (
-                                        <Chip key={index} size="md" variant="flat" color="success">
-                                            {slot}
-                                        </Chip>
-                                    ))}
-                                </div>
-                        </div>
-                        {/* Specs row */}
-                        <div className="flex flex-wrap gap-4 text-gray-600">
-                            
-                            <span className="flex items-center gap-1">
-                                <Users size={20} /> Capacity: {capacity}
-                            </span>
-                            
-                            <span className="flex items-center gap-1">
-                                <MapPin size={20} /> {location}
-                            </span>
-                        </div>
-
-                        {/* Footer: wishlist + CTA */}
-                        <div className="flex items-center justify-end gap-3 mt-2">
-                            <Button variant='outline' 
-                            className="hover:bg-blue-950 hover:text-white text-blue-950 border-blue-950 rounded-lg">
-                                <Link href='/all-facilities'><span className="flex items-center justify-center gap-2"><FaArrowLeftLong />Back facilities</span></Link></Button>
-                            <Button className="rounded-lg bg-[#22C55E] hover:bg-[#16A34A] text-white">
-                                <Link href="/">
-                                <span className="flex items-center gap-2">
-                                    Book Now
-                                    <FiExternalLink />
-                                </span>
-
-                                </Link>
-                            </Button>
-                        </div>
-                    </Card>
-                </Card>
+              <span className="flex items-center gap-1 bg-gray-100 p-3 rounded-xl w-full">
+                <h3>Sport Type:</h3>
+                <h2 className="text-black font-semibold">{sport_type}</h2>
+              </span>
             </div>
+
+            <div className="flex items-center justify-center gap-4 text-gray-600">
+              <span className="flex items-center gap-1 bg-gray-100 p-3 rounded-xl w-full">
+                <Users size={16} /> Capacity:
+                <h2 className="text-black font-semibold"> Up to {capacity}</h2>
+              </span>
+
+              <span className="flex items-center gap-1 bg-gray-100 p-3 rounded-xl w-full">
+                <h2>Price:</h2>{" "}
+                <h2 className="text-black font-semibold">
+                  ${price_per_hour}/hr
+                </h2>
+              </span>
+            </div>
+            <div className="flex flex-col gap-3  bg-gray-100 p-3 rounded-xl">
+              <span className="flex items-center gap-1 text-lg font-medium">
+                <Clock size={16} /> Available Slots
+              </span>
+              <div className="flex gap-2">
+                {available_slots.map((slot, index) => (
+                  <Chip key={index} size="md" variant="flat" color="success">
+                    {slot}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 w-full md:w-[400]  bg-gray-100 p-3 rounded-xl">
+              <span className="text-lg font-semibold">About this facility</span>
+              <p className=" text-gray-500">{description}</p>
+            </div>
+          </div>
+
+          {/* right */}
+
+          <BookingFormCard facilityDetails={facilityDetails}></BookingFormCard>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default FacilitiesDetails;
