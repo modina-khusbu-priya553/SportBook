@@ -3,6 +3,7 @@ import { Button, Card, CloseButton } from "@heroui/react";
 import { getBookings } from "@/app/lib/data";
 import { auth } from "../lib/auth";
 import { headers } from "next/headers";
+import Image from "next/image";
 
 
 const MyBookings = async () => {
@@ -13,19 +14,23 @@ const MyBookings = async () => {
     })
       const user = session?.user;
       const userId = user?.id
-  const bookingDetails = await getBookings(userId);
+  const bookingDetails = await getBookings({userId: userId});
+
+  const {image, bookingDate} = bookingDetails;
   console.log(bookingDetails)
   console.log(user)
   return (
     <div className="bg-[#F7F7F2]">
       <Card className="items-stretch md:flex-row max-w-7xl mx-auto">
-        <div className="relative h-[140px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[120px] sm:w-[120px]">
-          <img
-            alt="Cherries"
-            className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover select-none"
-            loading="lazy"
-            src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/cherries.jpeg"
-          />
+        <div>
+            <Image
+                          src={image}
+                          alt="djn"
+                          width={400}
+                          height={400}
+                          className="object-cover rounded-xl w-full h-64 "
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
         </div>
         <div className="flex flex-1 flex-col gap-3">
           <Card.Header className="gap-1">

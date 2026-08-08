@@ -52,6 +52,7 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
         totalPrice,
         price_per_hour,
         image,
+        name,
         capacity,
         location,
         bookingDate: new Date(bookingDate),
