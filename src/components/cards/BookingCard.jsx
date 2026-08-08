@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, CloseButton } from "@heroui/react";
+import { Button, Card } from "@heroui/react";
 import Image from "next/image";
 
 const BookingCard = ({ bookings }) => {
@@ -33,10 +33,7 @@ const BookingCard = ({ bookings }) => {
             Lorem ipsum dolor sit amet consectetur. Sed arcu donec id aliquam
             dolor sed amet faucibus etiam.
           </Card.Description>
-          <CloseButton
-            aria-label="Close banner"
-            className="absolute end-3 top-3"
-          />
+          
         </Card.Header>
         <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col">

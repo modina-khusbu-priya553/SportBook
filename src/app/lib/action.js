@@ -26,8 +26,14 @@ export const postBookingData = async(bookingData) =>{
             body: JSON.stringify(bookingData),
 
     });
+     if (!res.ok) {
+    console.error("Response status:", res.status);
+     const text = await res.text();
+    console.error("Response body:", text);
+    throw new Error("Booking failed");
+  }
 
-    const data = await res.json();
-    console.log(data)
-    return data;
-}
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
