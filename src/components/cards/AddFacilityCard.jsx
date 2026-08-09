@@ -13,6 +13,7 @@ import {
   AlertDialog,
 } from "@heroui/react";
 import { FaTrash } from "react-icons/fa6";
+import { authClient } from "@/app/lib/auth-client";
 
 
 const AddFacilityCard = ({ postFacilityAction }) => {
