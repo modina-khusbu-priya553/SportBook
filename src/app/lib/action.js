@@ -45,16 +45,16 @@ export const postBookingData = async(bookingData) =>{
 };
 
 // delete api for booking
-export const getDeleteBooking = async() =>{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`,{
+export const getDeleteBooking = async(bookingId) =>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`,{
         method: "DELETE"
     })
      const data = await res.json();
     console.log("data delete",data)
 
     if(data.deletedCount > 0){
-        revalidatePath('/destinations')
-        redirect('/destinations')
+        revalidatePath('/my-bookings')
+        redirect('/my-bookings')
     }
     return data;
 

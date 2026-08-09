@@ -1,17 +1,17 @@
 import React from "react";
-import { AlertDialog, Button, Card, Chip } from "@heroui/react";
+import { Card, Chip } from "@heroui/react";
 import Image from "next/image";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdDateRange } from "react-icons/md";
 import { FaRegClock, FaRegHeart, FaRegUser } from "react-icons/fa6";
+import DeleteBookings from "./DeleteBookings";
 
-const BookingCard = ({ bookings }) => {
+const BookingCard = ({ bookings, deleteBookingsAction }) => {
   console.log(bookings);
   const {
     image,
     name,
     totalPrice,
-    price_per_hour,
     capacity,
     bookingDate,
     timeSlots,
@@ -43,7 +43,7 @@ const BookingCard = ({ bookings }) => {
       <div className="flex flex-1 flex-col gap-3">
         <h2 className="md:text-lg  text-blue-950 font-semibold">{name}</h2>
 
-        <span className="flex items-center gap-2 text-sm md:text-md text-gray-600">
+        <span className="flex md:flex-row flex-col items-start md:items-center gap-2 text-sm md:text-md text-gray-600">
             <FaRegClock /> Booking time:
           {timeSlots.map((slot, index) => (
             <span key={index} className="flex items-center gap-1">
@@ -83,39 +83,7 @@ const BookingCard = ({ bookings }) => {
             <FaRegHeart className="text-lg" />
           </span>
 
-          <AlertDialog>
-            <Button variant="danger" size="sm">
-              Cancel Booking
-            </Button>
-            <AlertDialog.Backdrop>
-              <AlertDialog.Container>
-                <AlertDialog.Dialog className="sm:max-w-[400px]">
-                  <AlertDialog.CloseTrigger />
-                  <AlertDialog.Header>
-                    <AlertDialog.Icon status="danger" />
-                    <AlertDialog.Heading>
-                      Cancel This Booking?
-                    </AlertDialog.Heading>
-                  </AlertDialog.Header>
-                  <AlertDialog.Body>
-                    <p>
-                      Are you sure you want to cancel this booking? This action
-                      will remove your reservation and you may not be able to
-                      restore it.
-                    </p>
-                  </AlertDialog.Body>
-                  <AlertDialog.Footer>
-                    <Button slot="close" variant="tertiary">
-                      Keep Booking
-                    </Button>
-                    <Button slot="close" variant="danger">
-                      Cancel Booking
-                    </Button>
-                  </AlertDialog.Footer>
-                </AlertDialog.Dialog>
-              </AlertDialog.Container>
-            </AlertDialog.Backdrop>
-          </AlertDialog>
+          <DeleteBookings bookings={bookings} deleteBookingsAction={deleteBookingsAction}></DeleteBookings>
         </Card.Footer>
       </div>
 

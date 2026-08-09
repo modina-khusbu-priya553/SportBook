@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Card,
   Input,
@@ -11,7 +12,16 @@ import {
   Description,
   AlertDialog,
 } from "@heroui/react";
+import { FaTrash } from "react-icons/fa6";
+
+
 const AddFacilityCard = ({ postFacilityAction }) => {
+  const [timeSlots, setTimeSlots] = useState([""]);
+
+  // user info
+  const { data } = authClient.useSession();
+  const user = data?.user;
+
   return (
     <div>
       <div className="flex flex-col py-10 px-5 md:py-15 max-w-7xl mx-auto">
@@ -27,6 +37,9 @@ const AddFacilityCard = ({ postFacilityAction }) => {
 
         <Card>
           <form id="add-facility-form" action={postFacilityAction}>
+            <input type="hidden" name="userId" value={user?.id || ""} />
+            <input type="hidden" name="userName" value={user?.name || ""} />
+            <input type="hidden" name="userEmail" value={user?.email || ""} />
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="w-full space-y-8">
                 <TextField name="name" type="text" isRequired>
@@ -37,7 +50,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                   <Label className="text-lg text-gray-500">Image URL</Label>
                   <Input placeholder="url" />
                 </TextField>
-                <TextField name="location" type="location" isRequired>
+                <TextField name="location" type="text" isRequired>
                   <Label className="text-lg text-gray-500">Location</Label>
                   <Input placeholder="e.g. Helsinki" />
                 </TextField>
@@ -114,20 +127,74 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                 </TextField>
               </div>
             </div>
+
             <div className="space-y-8 my-8">
-              <TextField name="available_slots" type="" isRequired>
-                <Label className="text-lg text-gray-500">
-                  Available Time Slots
-                </Label>
-                <Input placeholder="e.g. 10:00-11:00" />
-              </TextField>
+              <div className="space-y-4">
+                <div>
+                  <Label className="text-lg text-gray-500">
+                    Available Time Slots
+                  </Label>
+                </div>
+
+                <div className="space-y-3">
+                  {timeSlots.map((slot, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <TextField
+                        name="available_slots"
+                        className="flex-1"
+                        isRequired
+                      >
+                        <Input
+                          placeholder="e.g. 10:00 - 11:00"
+                          value={slot}
+                          onChange={(e) => {
+                            const updatedSlots = [...timeSlots];
+                            updatedSlots[index] = e.target.value;
+                            setTimeSlots(updatedSlots);
+                          }}
+                        />
+                      </TextField>
+
+                      {timeSlots.length > 1 && (
+                        <Button
+                          type="button"
+                          isIconOnly
+                          variant="tertiary"
+                          className="text-red-500"
+                          onPress={() => {
+                            setTimeSlots(
+                              timeSlots.filter((_, i) => i !== index),
+                            );
+                          }}
+                        >
+                          <FaTrash />
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  type="button"
+                  variant="tertiary"
+                  className="text-[#22C55E] font-semibold"
+                  onPress={() => {
+                    setTimeSlots([...timeSlots, ""]);
+                  }}
+                >
+                  + Add another slot
+                </Button>
+              </div>
 
               <TextField name="description" type="text" isRequired>
                 <Label className="text-lg text-gray-500">Description</Label>
                 <TextArea placeholder="Describe about the facility..." />
-                <Description>Character: 0 / 200</Description>
+                <Description>Character: maximum 200</Description>
               </TextField>
             </div>
+
+            {/* Add with confirmation */}
+
             <AlertDialog>
               <Button
                 size="lg"
