@@ -5,9 +5,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdDateRange } from "react-icons/md";
 import { FaRegClock, FaRegHeart, FaRegUser } from "react-icons/fa6";
 import DeleteBookings from "./DeleteBookings";
+import { getDeleteBooking } from "@/app/lib/action";
 
 const BookingCard = ({ bookings, deleteBookingsAction }) => {
-  console.log(bookings);
+  
   const {
     image,
     name,
@@ -83,7 +84,7 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
             <FaRegHeart className="text-lg" />
           </span>
 
-          <DeleteBookings bookings={bookings} deleteBookingsAction={deleteBookingsAction}></DeleteBookings>
+          <DeleteBookings bookings={bookings}  deleteBookingsAction={getDeleteBooking}></DeleteBookings>
         </Card.Footer>
       </div>
 

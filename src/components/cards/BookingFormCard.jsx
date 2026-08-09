@@ -18,15 +18,21 @@ import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
 
 const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
-    
   // user info
   const { data } = authClient.useSession();
   const user = data?.user;
 
   console.log(user);
 
-  const { _id, name, available_slots, capacity, location, image,price_per_hour, } =
-    facilityDetails;
+  const {
+    _id,
+    name,
+    available_slots,
+    capacity,
+    location,
+    image,
+    price_per_hour,
+  } = facilityDetails;
 
   const [bookingDate, setBookingDate] = useState(null);
 
@@ -34,35 +40,34 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
   const totalPrice = selectedSlots.size * price_per_hour;
 
   //   booking handle
-  const handleBooking = async() =>{
+  const handleBooking = async () => {
     if (selectedSlots.size === 0) {
-    toast.error("Please select at least one time slot");
-    return;
+      toast.error("Please select at least one time slot");
+      return;
     }
-    if( !bookingDate){
-        toast.error("Please select date");
-        return;
+    if (!bookingDate) {
+      toast.error("Please select date");
+      return;
     }
     const bookingData = {
-        userId: user?.id,
-        userImage: user?.image,
-        userName: user?.name,
-        userEmail: user?.email,
-        _id,
-        totalPrice,
-        price_per_hour,
-        image,
-        name,
-        capacity,
-        location,
-        bookingDate: new Date(bookingDate),
-        timeSlots: [...selectedSlots],
-
-    }
-    console.log(bookingData)
+      userId: user?.id,
+      userImage: user?.image,
+      userName: user?.name,
+      userEmail: user?.email,
+      _id,
+      totalPrice,
+      price_per_hour,
+      image,
+      name,
+      capacity,
+      location,
+      bookingDate: new Date(bookingDate),
+      timeSlots: [...selectedSlots],
+    };
+    console.log(bookingData);
     await postBookingAction(bookingData);
-     toast.success('Booking successful!');
-  }
+    toast.success("Booking successful!");
+  };
 
   const handleRemoveSlot = (slot) => {
     const updated = new Set(selectedSlots);
@@ -200,17 +205,13 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
           </div>
 
           <div className="flex items-center gap-3 mt-2">
-            <Button
-              variant="outline"
-              className="hover:bg-blue-950 hover:text-white text-blue-950 border-blue-950 rounded-lg w-full"
+            <Link
+              href="/all-facilities"
+              className="hover:bg-blue-950 hover:text-white text-blue-950 border border-blue-950 rounded-lg w-full flex items-center justify-center gap-2 py-2.5 px-4 transition-colors"
             >
-              <Link href="/all-facilities">
-                <span className="flex items-center justify-center gap-2">
-                  <FaArrowLeftLong />
-                  Back facilities
-                </span>
-              </Link>
-            </Button>
+              <FaArrowLeftLong />
+              Back facilities
+            </Link>
             <AlertDialog>
               <Button
                 size="lg"

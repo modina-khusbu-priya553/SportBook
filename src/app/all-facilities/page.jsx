@@ -9,7 +9,7 @@ const AllFacilitiesPage = async () => {
 
   return (
     <div className="bg-[#F7F7F2]">
-      <div className="container mx-auto py-20 px-10">
+      <div className="max-w-7xl mx-auto  md:py-20 py-10 px-4">
         <div className="flex flex-col items-center gap-8 justify-center text-center">
           <h2 className="text-xl md:text-5xl font-bold">
             Discover Our Sports Facilities
@@ -78,7 +78,7 @@ const AllFacilitiesPage = async () => {
             </Select>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-5">
           {allFacilitiesData.map((facility) => (
             <AllFacilitiesCard key={facility._id} facility={facility} />
           ))}

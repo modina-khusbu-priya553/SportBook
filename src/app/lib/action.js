@@ -50,7 +50,8 @@ export const getDeleteBooking = async(bookingId) =>{
         method: "DELETE"
     })
      const data = await res.json();
-    console.log("data delete",data)
+
+    console.log("data after delete",data)
 
     if(data.deletedCount > 0){
         revalidatePath('/my-bookings')

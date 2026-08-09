@@ -8,30 +8,28 @@ import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
 import NavLink from "./NavLink";
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = (
     <>
       <li>
-        <NavLink href={"/"}>Home</NavLink>
+        <NavLink  href={"/"}Home></NavLink>
       </li>
       <li>
         <NavLink href={"/all-facilities"}>All Facilities</NavLink>
       </li>
       <li>
-        <NavLink href={"/my-bookings"}></NavLink>
+        <NavLink href={"/my-bookings"}>My Bookingd</NavLink>
       </li>
       <li>
-        <NavLink href={"//add-facility"}>Add Facility</NavLink>
+        <NavLink href={"/add-facility"}>Add Facility</NavLink>
       </li>
       <li>
-        <NavLink href={"/manage-facilities"}></NavLink>
+        <NavLink href={"/manage-facilities"}>Manage Facilities</NavLink>
       </li>
 
-      <li>
-        <NavLink href={"/"}></NavLink>
-      </li>
     </>
   );
 
@@ -44,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
-      <header className="flex container mx-auto  items-center justify-between p-4">
+      <header className="flex max-w-7xl mx-auto  items-center justify-between p-4">
         <div className="flex items-center gap-4">
           <button
             className="md:hidden"

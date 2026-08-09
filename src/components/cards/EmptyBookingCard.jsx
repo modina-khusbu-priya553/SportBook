@@ -5,11 +5,12 @@ import { PiCalendarXBold } from "react-icons/pi";
 
 const EmptyBookingCard = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-      <div className="bg-gray-100 p-6 rounded-full mb-6">
-        <PiCalendarXBold className="text-5xl text-gray-400" />
-      </div>
-      <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
+    <div className="md:py-10 py-4">
+      <div className="bg-white flex flex-col items-center justify-center gap-3 py-6 px-3 rounded-lg shadow-lg text-center">
+        
+        <PiCalendarXBold className="text-5xl text-red-600" />
+      
+      <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
         No bookings yet
       </h2>
       <p className="text-gray-500 max-w-sm mb-6">
@@ -21,6 +22,7 @@ const EmptyBookingCard = () => {
           Browse Facilities
         </Button>
       </Link>
+      </div>
     </div>
   );
 };

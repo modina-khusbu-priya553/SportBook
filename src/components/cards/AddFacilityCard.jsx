@@ -15,9 +15,18 @@ import {
 import { FaTrash } from "react-icons/fa6";
 import { authClient } from "@/app/lib/auth-client";
 
-
 const AddFacilityCard = ({ postFacilityAction }) => {
-  const [timeSlots, setTimeSlots] = useState([""]);
+  const [currentSlot, setCurrentSlot] = useState("");
+  const [timeSlots, setTimeSlots] = useState([]);
+  const handleAddSlot = () => {
+    if (currentSlot.trim() === "") return;
+    setTimeSlots([...timeSlots, currentSlot]);
+    setCurrentSlot("");
+  };
+
+  const handleRemoveSlot = (index) => {
+    setTimeSlots(timeSlots.filter((_, i) => i !== index));
+  };
 
   // user info
   const { data } = authClient.useSession();
@@ -25,12 +34,12 @@ const AddFacilityCard = ({ postFacilityAction }) => {
 
   return (
     <div>
-      <div className="flex flex-col py-10 px-5 md:py-15 max-w-7xl mx-auto">
+      <div className="flex flex-col py-10 px-5 md:py-20 max-w-7xl mx-auto">
         <div className="flex flex-col gap-10 px-2 py-4">
-          <h2 className="text-2xl md:text-5xl text-center font-bold">
+          <h2 className="text-xl md:text-3xl text-center font-bold">
             Add New Facility
           </h2>
-          <p className="md:text-lg text-gray-500 line-clamp-2">
+          <p className=" text-gray-500 line-clamp-2">
             List your sports facility and make it available <br /> for players
             to discover and book anytime.
           </p>
@@ -38,25 +47,31 @@ const AddFacilityCard = ({ postFacilityAction }) => {
 
         <Card>
           <form id="add-facility-form" action={postFacilityAction}>
+            {/* user info */}
+
             <input type="hidden" name="userId" value={user?.id || ""} />
             <input type="hidden" name="userName" value={user?.name || ""} />
             <input type="hidden" name="userEmail" value={user?.email || ""} />
+
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+              {/* description */}
               <div className="w-full space-y-8">
                 <TextField name="name" type="text" isRequired>
-                  <Label className="text-lg text-gray-500">Facility Name</Label>
+                  <Label className="text-gray-500">Facility Name</Label>
                   <Input placeholder="e.g. Smash Badminton Arena" />
                 </TextField>
                 <TextField name="image" isRequired>
-                  <Label className="text-lg text-gray-500">Image URL</Label>
+                  <Label className=" text-gray-500">Image URL</Label>
                   <Input placeholder="url" />
                 </TextField>
                 <TextField name="location" type="text" isRequired>
-                  <Label className="text-lg text-gray-500">Location</Label>
+                  <Label className=" text-gray-500">Location</Label>
                   <Input placeholder="e.g. Helsinki" />
                 </TextField>
               </div>
+
               <div className="w-full space-y-8">
+                {/* select city */}
                 <div>
                   <Select
                     name="sport_type"
@@ -64,7 +79,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                     className="w-full"
                     placeholder="Type"
                   >
-                    <Label className="text-lg text-gray-500">
+                    <Label className=" text-gray-500">
                       Facility Type
                     </Label>
                     <Select.Trigger className="rounded-2xl">
@@ -116,79 +131,67 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                     </Select.Popover>
                   </Select>
                 </div>
+
                 <TextField name="price_per_hour" type="number" isRequired>
-                  <Label className="text-lg text-gray-500">
+                  <Label className=" text-gray-500">
                     Price Per Hour($)
                   </Label>
                   <Input placeholder="e.g 20" />
                 </TextField>
                 <TextField name="capacity" type="number" isRequired>
-                  <Label className="text-lg text-gray-500">Capacity</Label>
+                  <Label className=" text-gray-500">Capacity</Label>
                   <Input placeholder="e.g. 15" />
                 </TextField>
               </div>
             </div>
 
             <div className="space-y-8 my-8">
-              <div className="space-y-4">
-                <div>
-                  <Label className="text-lg text-gray-500">
-                    Available Time Slots
-                  </Label>
-                </div>
+              {/* slots */}
 
-                <div className="space-y-3">
-                  {timeSlots.map((slot, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <TextField
-                        name="available_slots"
-                        className="flex-1"
-                        isRequired
-                      >
-                        <Input
-                          placeholder="e.g. 10:00 - 11:00"
-                          value={slot}
-                          onChange={(e) => {
-                            const updatedSlots = [...timeSlots];
-                            updatedSlots[index] = e.target.value;
-                            setTimeSlots(updatedSlots);
-                          }}
-                        />
-                      </TextField>
-
-                      {timeSlots.length > 1 && (
-                        <Button
-                          type="button"
-                          isIconOnly
-                          variant="tertiary"
-                          className="text-red-500"
-                          onPress={() => {
-                            setTimeSlots(
-                              timeSlots.filter((_, i) => i !== index),
-                            );
-                          }}
-                        >
-                          <FaTrash />
-                        </Button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-
+              <div className="flex items-center gap-3">
+                <TextField className="w-full" type="text" isRequired>
+                  <Label className=" text-gray-500">Time Slot</Label>
+                  <Input
+                    placeholder="e.g. 10:00 - 11:00"
+                    value={currentSlot}
+                    onChange={(e) => setCurrentSlot(e.target.value)}
+                  />
+                </TextField>
                 <Button
                   type="button"
-                  variant="tertiary"
-                  className="text-[#22C55E] font-semibold"
-                  onPress={() => {
-                    setTimeSlots([...timeSlots, ""]);
-                  }}
+                  className="bg-[#22C55E] hover:bg-[#16A34A] text-white"
+                  onPress={handleAddSlot}
                 >
-                  + Add another slot
+                  + Add
                 </Button>
               </div>
+              <div className="space-y-3 flex gap-1">
+                {timeSlots.map((slot, index) => (
+                  <div key={index}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-lg border-[#22C55E]"
+                      type="button"
+                      onPress={() => handleRemoveSlot(index)}
+                    >
+                      {slot}
+                    </Button>
 
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="hidden"
+                        name="available_slots"
+                        value={slot}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* description */}
               <TextField name="description" type="text" isRequired>
-                <Label className="text-lg text-gray-500">Description</Label>
+                <Label className=" text-gray-500">Description</Label>
                 <TextArea placeholder="Describe about the facility..." />
                 <Description>Character: maximum 200</Description>
               </TextField>

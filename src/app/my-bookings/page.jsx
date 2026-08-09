@@ -32,7 +32,6 @@ const MyBookings = async () => {
               <div key={bookings._id}>
                 <BookingCard
                   bookings={bookings}
-                  deleteBookingsAction={getDeleteBooking}
                 />
               </div>
             ))}

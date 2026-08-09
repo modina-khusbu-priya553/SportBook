@@ -38,14 +38,13 @@ const AllFacilitiesCard = ({ facility }) => {
         <h2 className="text-2xl text-blue-950 font-bold">${price_per_hour}</h2>
       </Card.Header>
       <Card.Footer>
-        <Button className="rounded-lg bg-[#22C55E] hover:bg-[#16A34A] text-white w-full">
-          <Link href={`/all-facilities/${_id}`}>
-            <span className="flex items-center gap-2">
-              Book Now
-              <FiExternalLink />
-            </span>
-          </Link>
-        </Button>
+        <Link
+    href={`/all-facilities/${_id}`}
+    className="rounded-lg bg-[#22C55E] hover:bg-[#16A34A] text-white w-full flex items-center justify-center gap-2 py-2 px-4"
+  >
+    Book Now
+    <FiExternalLink />
+  </Link>
       </Card.Footer>
     </Card>
   );
