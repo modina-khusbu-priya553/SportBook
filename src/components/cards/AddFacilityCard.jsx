@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   Input,
@@ -12,12 +13,16 @@ import {
   Description,
   AlertDialog,
 } from "@heroui/react";
-import { FaTrash } from "react-icons/fa6";
 import { authClient } from "@/app/lib/auth-client";
+import { toast } from "react-toastify";
+
 
 const AddFacilityCard = ({ postFacilityAction }) => {
+  const router = useRouter();
+
   const [currentSlot, setCurrentSlot] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
+
   const handleAddSlot = () => {
     if (currentSlot.trim() === "") return;
     setTimeSlots([...timeSlots, currentSlot]);
@@ -31,6 +36,21 @@ const AddFacilityCard = ({ postFacilityAction }) => {
   // user info
   const { data } = authClient.useSession();
   const user = data?.user;
+
+  const handleAddFacility = async (formData) => {
+    const result = await postFacilityAction(formData);
+
+    if (result?.insertedId) {
+      toast.success("Facility added successfully!");
+      setTimeSlots([]);
+      setCurrentSlot("");
+      setTimeout(() => {
+        router.push("/all-facilities");
+      }, 1500);
+    } else {
+      toast.error("Failed to add facility.");
+    }
+  };
 
   return (
     <div>
@@ -46,7 +66,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
         </div>
 
         <Card>
-          <form id="add-facility-form" action={postFacilityAction}>
+          <form id="add-facility-form" action={handleAddFacility}>
             {/* user info */}
 
             <input type="hidden" name="userId" value={user?.id || ""} />
@@ -79,9 +99,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                     className="w-full"
                     placeholder="Type"
                   >
-                    <Label className=" text-gray-500">
-                      Facility Type
-                    </Label>
+                    <Label className=" text-gray-500">Facility Type</Label>
                     <Select.Trigger className="rounded-2xl">
                       <Select.Value />
                       <Select.Indicator />
@@ -133,9 +151,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                 </div>
 
                 <TextField name="price_per_hour" type="number" isRequired>
-                  <Label className=" text-gray-500">
-                    Price Per Hour($)
-                  </Label>
+                  <Label className=" text-gray-500">Price Per Hour($)</Label>
                   <Input placeholder="e.g 20" />
                 </TextField>
                 <TextField name="capacity" type="number" isRequired>
@@ -148,8 +164,8 @@ const AddFacilityCard = ({ postFacilityAction }) => {
             <div className="space-y-8 my-8">
               {/* slots */}
 
-              <div className="flex items-center gap-3">
-                <TextField className="w-full" type="text" isRequired>
+              <div className="flex justify-center items-center gap-3">
+                <TextField className="w-full" type="text">
                   <Label className=" text-gray-500">Time Slot</Label>
                   <Input
                     placeholder="e.g. 10:00 - 11:00"
@@ -230,6 +246,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                         Cancel
                       </Button>
                       <Button
+                        slot="close"
                         type="submit"
                         className="bg-[#22C55E] hover:bg-[#16A34A] text-white"
                         variant="primary"

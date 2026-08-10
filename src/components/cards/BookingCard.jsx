@@ -8,7 +8,6 @@ import DeleteBookings from "./DeleteBookings";
 import { getDeleteBooking } from "@/app/lib/action";
 
 const BookingCard = ({ bookings, deleteBookingsAction }) => {
-  
   const {
     image,
     name,
@@ -24,13 +23,13 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
       {/* Mobile: image + badge*/}
       <div className="relative">
         <Image
-                      src={image}
-                      alt={name}
-                      width={400}
-                      height={400}
-                      className="object-cover rounded-xl w-full h-64 "
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+          src={image}
+          alt={name}
+          width={400}
+          height={400}
+          className="object-cover rounded-xl w-full h-64 "
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
 
         {/* Chip overlays top-right of image, mobile only */}
         <div className="absolute top-3 right-3 md:hidden">
@@ -45,10 +44,10 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
         <h2 className="md:text-lg  text-blue-950 font-semibold">{name}</h2>
 
         <span className="flex md:flex-row flex-col items-start md:items-center gap-2 text-sm md:text-md text-gray-600">
-            <FaRegClock /> Booking time:
+          <FaRegClock /> Booking time:
           {timeSlots.map((slot, index) => (
             <span key={index} className="flex items-center gap-1">
-               {slot}
+              {slot}
             </span>
           ))}
         </span>
@@ -84,7 +83,10 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
             <FaRegHeart className="text-lg" />
           </span>
 
-          <DeleteBookings bookings={bookings}  deleteBookingsAction={getDeleteBooking}></DeleteBookings>
+          <DeleteBookings
+            bookings={bookings}
+            deleteBookingsAction={getDeleteBooking}
+          ></DeleteBookings>
         </Card.Footer>
       </div>
 

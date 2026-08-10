@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 
 export const getPostData = async(formData) =>{
     const newFacility = Object.fromEntries(formData.entries())
+    newFacility.available_slots = formData.getAll("available_slots");
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facilities`,{
         method: "POST",
         headers: {
@@ -40,8 +41,8 @@ export const postBookingData = async(bookingData) =>{
   }
 
   const data = await res.json();
-  console.log(data);
-  return data;
+    return data;
+  
 };
 
 // delete api for booking

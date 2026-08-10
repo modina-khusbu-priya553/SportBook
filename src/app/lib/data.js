@@ -17,3 +17,10 @@ export const getBookings = async (userId) =>{
     const data = await res.json()
     return data 
 }
+
+// facility api only for login user
+export const getMyFacilities = async (userId) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`)
+    const data = await res.json()
+    return data 
+}
