@@ -5,7 +5,7 @@ import { PiCalendarXBold } from "react-icons/pi";
 
 const EmptyBookingCard = () => {
   return (
-    <div className="md:py-10 py-4">
+    <div className="md:py-10">
       <div className="bg-white flex flex-col items-center justify-center gap-3 py-6 px-3 rounded-lg shadow-lg text-center">
         
         <PiCalendarXBold className="text-5xl text-red-600" />

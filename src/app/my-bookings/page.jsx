@@ -2,9 +2,9 @@ import React from "react";
 import { getBookings } from "@/app/lib/data";
 import { auth } from "../lib/auth";
 import { headers } from "next/headers";
-import BookingCard from "@/components/cards/BookingCard";
+import BookingCard from "@/components/cards/BookingCard/BookingCard";
 import { getDeleteBooking } from "../lib/action";
-import EmptyBookingCard from "@/components/cards/EmptyBookingCard";
+import EmptyBookingCard from "@/components/cards/BookingCard/EmptyBookingCard";
 
 const MyBookings = async () => {
   // user info
@@ -19,7 +19,7 @@ const MyBookings = async () => {
     <div className="bg-[#F7F7F2]">
       <div className="md:py-20 py-10 px-5 max-w-7xl mx-auto">
         <div className="flex items-center justify-center">
-          <h2 className="font-bold pb-8 text-xl  text-blue-950 md:text-4xl">
+          <h2 className="font-bold pb-8 text-2xl  text-blue-950 md:text-5xl">
             My Bookings
           </h2>
         </div>

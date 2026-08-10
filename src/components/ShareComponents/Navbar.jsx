@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Avatar } from "@heroui/react";
-import LogoName from "../../public/asset/logoname.png";
+import LogoName from "../../../public/asset/logoname.png";
 import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink href={"/all-facilities"}>All Facilities</NavLink>
       </li>
       <li>
-        <NavLink href={"/my-bookings"}>My Bookingd</NavLink>
+        <NavLink href={"/my-bookings"}>My Bookings</NavLink>
       </li>
       <li>
         <NavLink href={"/add-facility"}>Add Facility</NavLink>

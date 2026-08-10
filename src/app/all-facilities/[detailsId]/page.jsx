@@ -3,7 +3,7 @@ import { getFacilityDetails } from "@/app/lib/data";
 import { Chip } from "@heroui/react";
 import { MapPin, Users, Clock } from "lucide-react";
 import Image from "next/image";
-import BookingFormCard from "@/components/cards/BookingFormCard";
+import BookingFormCard from "@/components/cards/BookingCard/BookingFormCard";
 import { postBookingData } from "@/app/lib/action";
 
 const FacilitiesDetails = async ({ params }) => {
@@ -22,8 +22,8 @@ const FacilitiesDetails = async ({ params }) => {
 
   return (
     <div className="bg-[#F7F7F2]">
-      <div className="container mx-auto py-10 md:py-15">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-3 p-6">
+      <div className="max-w-7xl mx-auto py-10 md:py-15 p-5">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 ">
           {/* left */}
           <div className="bg-white px-6 shadow-lg space-y-4 rounded-lg p-6 w-full md:w-auto">
             <Image

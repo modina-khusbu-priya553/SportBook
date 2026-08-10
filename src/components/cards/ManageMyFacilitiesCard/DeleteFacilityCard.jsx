@@ -2,7 +2,11 @@
 import React from 'react';
 import {AlertDialog, Button} from "@heroui/react";
 
-const DeleteFacilityCard = () => {
+const DeleteFacilityCard = ({facilities, deleteFacilityAction}) => {
+
+    const handleDelete = async(userId) =>{
+        return deleteFacilityAction(userId)
+    }
     return (
         <div>
             <div>
@@ -14,18 +18,19 @@ const DeleteFacilityCard = () => {
                         <AlertDialog.CloseTrigger />
                         <AlertDialog.Header>
                         <AlertDialog.Icon status="danger" />
-                        <AlertDialog.Heading>Confirm Delete Booking</AlertDialog.Heading>
+                        
+                        <AlertDialog.Heading> Delete This Facility?</AlertDialog.Heading>
                         </AlertDialog.Header>
                         <AlertDialog.Body>
                         <p>
-                            
+                            Are you sure you want to delete this facility?
                         </p>
                         </AlertDialog.Body>
                         <AlertDialog.Footer>
                         <Button slot="close" variant="tertiary">
                             Cancel
                         </Button>
-                        <Button  slot="close" variant="danger">
+                        <Button onClick={() =>{handleDelete(facilities.userId)}} slot="close" variant="danger">
                             Delete
                         </Button>
                         </AlertDialog.Footer>

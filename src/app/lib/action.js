@@ -49,7 +49,7 @@ export const postBookingData = async(bookingData) =>{
 export const getDeleteBooking = async(bookingId) =>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`,{
         method: "DELETE"
-    })
+    });
      const data = await res.json();
 
     console.log("data after delete",data)
@@ -74,6 +74,28 @@ export const getUpdateFacility = async(userId, formData) =>{
         },
         body: JSON.stringify(updatedFacility),
     });
+
     const data = await res.json();
+
+     if(data.modifiedCount > 0){
+        revalidatePath('/manage-facilities')
+        redirect('/manage-facilities')
+    }
+
+    return data;
+}
+
+export const getDeleteFacility = async(userId) =>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
+       method: "DELETE" 
+    });
+    const data = await res.json();
+
+    console.log("data after delete",data)
+
+    if(data.deletedCount > 0){
+        revalidatePath('/manage-facilities')
+        redirect('/manage-facilities')
+    }
     return data;
 }

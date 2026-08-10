@@ -78,7 +78,7 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
   return (
     <div className="space-y-8 p-6 md:p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white rounded-lg">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-gray-800">
+        <h2 className="text-3xl font-bold text-blue-950">
           Reserve Your Time Slot
         </h2>
         <p className="text-gray-500">

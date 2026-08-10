@@ -51,7 +51,7 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
 
   const handleUpdateForm = async (formData) => {
     const updated = await updatedFacilityAction(userId, formData);
-    console.log(updated);
+    return updated;
   };
   return (
     <div>
@@ -171,7 +171,7 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
 
                       {/* Price */}
                       <TextField
-                        name="price"
+                        name="price_per_hour"
                         type="number"
                         isRequired
                         defaultValue={price_per_hour}
@@ -185,9 +185,9 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
                         <FieldError />
                       </TextField>
 
-                      {/* Duration */}
+                      {/* capacity */}
                       <TextField
-                        name="duration"
+                        name="capacity"
                         isRequired
                         defaultValue={capacity}
                       >

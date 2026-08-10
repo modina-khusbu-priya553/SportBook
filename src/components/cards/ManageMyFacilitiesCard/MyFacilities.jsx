@@ -9,7 +9,7 @@ import { FaRegClock } from "react-icons/fa6";
 
 import EditFacilityModal from "./EditFacilityModal";
 import DeleteFacilityCard from "./DeleteFacilityCard";
-import { getUpdateFacility } from "@/app/lib/action";
+import { getDeleteFacility, getUpdateFacility } from "@/app/lib/action";
 
 const MyFacilities = ({ facilities }) => {
   const {
@@ -89,7 +89,7 @@ const MyFacilities = ({ facilities }) => {
           {/* button */}
         <div className="flex items-center gap-4">
           <EditFacilityModal facilities={facilities} updatedFacilityAction={getUpdateFacility}></EditFacilityModal>
-          <DeleteFacilityCard></DeleteFacilityCard>
+          <DeleteFacilityCard facilities={facilities} deleteFacilityAction={getDeleteFacility}></DeleteFacilityCard>
         </div>
       </div>
 

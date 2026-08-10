@@ -56,8 +56,8 @@ const AddFacilityCard = ({ postFacilityAction }) => {
   return (
     <div>
       <div className="flex flex-col py-10 px-5 md:py-20 max-w-7xl mx-auto">
-        <div className="flex flex-col gap-10 px-2 py-4">
-          <h2 className="text-xl md:text-3xl text-center font-bold">
+        <div className="flex flex-col gap-8 px-2 py-4">
+          <h2 className="text-2xl md:text-5xl text-blue-950 font-bold">
             Add New Facility
           </h2>
           <p className=" text-gray-500 line-clamp-2">
@@ -272,6 +272,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
         </Card>
       </div>
     </div>
+    
   );
 };
 

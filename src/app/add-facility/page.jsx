@@ -1,6 +1,6 @@
 import React from 'react';
 import { getPostData } from '../lib/action';
-import AddFacilityCard from '@/components/cards/AddFacilityCard';
+import AddFacilityCard from '@/components/cards/AddFacilityCard/AddFacilityCard';
 
 const AddFacilities = async() => {
     return (

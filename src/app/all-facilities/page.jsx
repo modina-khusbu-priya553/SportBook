@@ -1,6 +1,6 @@
 import React from "react";
 import { getFacilitiesData } from "@/app/lib/data";
-import AllFacilitiesCard from "@/components/cards/AllFacilitiesCard";
+import AllFacilitiesCard from "@/components/cards/AllFacilityCard/AllFacilitiesCard";
 import { Label, SearchField, ListBox, Select } from "@heroui/react";
 import { BiFilterAlt } from "react-icons/bi";
 
@@ -9,9 +9,9 @@ const AllFacilitiesPage = async () => {
 
   return (
     <div className="bg-[#F7F7F2]">
-      <div className="max-w-7xl mx-auto  md:py-20 py-10 px-4">
+      <div className="max-w-7xl mx-auto md:py-20 py-10 px-5">
         <div className="flex flex-col items-center gap-8 justify-center text-center">
-          <h2 className="text-xl md:text-5xl font-bold">
+          <h2 className="text-2xl text-blue-950 md:text-5xl font-bold">
             Discover Our Sports Facilities
           </h2>
           <p className="text-muted text-xl">
@@ -78,7 +78,7 @@ const AllFacilitiesPage = async () => {
             </Select>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-5">
           {allFacilitiesData.map((facility) => (
             <AllFacilitiesCard key={facility._id} facility={facility} />
           ))}
