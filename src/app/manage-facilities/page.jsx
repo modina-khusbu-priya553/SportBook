@@ -2,8 +2,9 @@ import React from "react";
 import { getMyFacilities } from "../lib/data";
 import { headers } from "next/headers";
 import { auth } from "../lib/auth";
-import MyFacilities from "@/components/cards/ManageMyFacilitiesCard/MyFacilities";
+
 import EmptyCard from "@/components/cards/ManageMyFacilitiesCard/EmptyCard";
+import MyFacilities from "@/components/cards/ManageMyFacilitiesCard/MyFacilities";
 
 const ManageFacilities = async () => {
   // user info
