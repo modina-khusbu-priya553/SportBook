@@ -12,10 +12,11 @@ import {
   Button,
   Description,
   AlertDialog,
+  Chip,
 } from "@heroui/react";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
-
+import { IoClose } from "react-icons/io5";
 
 const AddFacilityCard = ({ postFacilityAction }) => {
   const router = useRouter();
@@ -29,8 +30,8 @@ const AddFacilityCard = ({ postFacilityAction }) => {
     setCurrentSlot("");
   };
 
-  const handleRemoveSlot = (index) => {
-    setTimeSlots(timeSlots.filter((_, i) => i !== index));
+  const handleRemoveSlot = (indexToRemove) => {
+    setTimeSlots(timeSlots.filter((_, i) => i !== indexToRemove));
   };
 
   // user info
@@ -163,14 +164,19 @@ const AddFacilityCard = ({ postFacilityAction }) => {
 
             <div className="space-y-8 my-8">
               {/* slots */}
-
               <div className="flex justify-center items-center gap-3">
                 <TextField className="w-full" type="text">
-                  <Label className=" text-gray-500">Time Slot</Label>
+                  <Label className="text-gray-500">Time Slot</Label>
                   <Input
                     placeholder="e.g. 10:00 - 11:00"
                     value={currentSlot}
                     onChange={(e) => setCurrentSlot(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleAddSlot();
+                      }
+                    }}
                   />
                 </TextField>
                 <Button
@@ -181,33 +187,36 @@ const AddFacilityCard = ({ postFacilityAction }) => {
                   + Add
                 </Button>
               </div>
-              <div className="space-y-3 flex gap-1">
-                {timeSlots.map((slot, index) => (
-                  <div key={index}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-lg border-[#22C55E]"
-                      type="button"
-                      onPress={() => handleRemoveSlot(index)}
-                    >
-                      {slot}
-                    </Button>
 
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="hidden"
-                        name="available_slots"
-                        value={slot}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {timeSlots.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {timeSlots.map((slot, index) => (
+                    <Chip key={index} color="default" size="sm" variant="soft">
+                      <Chip.Label>{slot}</Chip.Label>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveSlot(index)}
+                        className="ml-1 hover:text-red-500"
+                      >
+                        <IoClose size={14} />
+                      </button>
+                    </Chip>
+                  ))}
+                </div>
+              )}
+
+              {timeSlots.map((slot, index) => (
+                <input
+                  key={index}
+                  type="hidden"
+                  name="available_slots"
+                  value={slot}
+                />
+              ))}
 
               {/* description */}
               <TextField name="description" type="text" isRequired>
-                <Label className=" text-gray-500">Description</Label>
+                <Label className="text-gray-500">Description</Label>
                 <TextArea placeholder="Describe about the facility..." />
                 <Description>Character: maximum 200</Description>
               </TextField>

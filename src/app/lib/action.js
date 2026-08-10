@@ -61,3 +61,19 @@ export const getDeleteBooking = async(bookingId) =>{
     return data;
 
 }
+
+// update api for manage facility
+
+export const getUpdateFacility = async(userId, formData) =>{
+    const updatedFacility = Object.fromEntries(formData.entries())
+    updatedFacility.available_slots = formData.getAll("available_slots");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
+        method: "PATCH",
+         headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedFacility),
+    });
+    const data = await res.json();
+    return data;
+}
