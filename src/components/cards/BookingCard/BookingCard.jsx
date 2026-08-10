@@ -19,7 +19,7 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
     location,
   } = bookings;
   return (
-    <Card className="flex flex-col md:flex-row gap-6 md:justify-between p-4 [&_svg]:text-[#22C55E]">
+    <Card className="flex flex-col md:flex-row gap-6 md:justify-between p-6 [&_svg]:text-[#22C55E]">
       {/* Mobile: image + badge*/}
       <div className="relative">
         <Image
@@ -27,7 +27,7 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
           alt={name}
           width={400}
           height={400}
-          className="object-cover rounded-xl w-full h-64 "
+          className="object-cover rounded-xl  h-64 "
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
 
@@ -52,14 +52,15 @@ const BookingCard = ({ bookings, deleteBookingsAction }) => {
           ))}
         </span>
 
-        <span className="flex items-center gap-2 text-sm md:text-md text-gray-600">
-          <MdDateRange />
-          Booking date:{" "}
-          {new Date(bookingDate).toLocaleDateString("en-US", {
+        <span className="flex md:flex-row flex-col md:items-center gap-2 text-sm md:text-md text-gray-600">
+          <span className="flex items-center gap-1"><MdDateRange /> Booking date:{" "}</span>
+          <span>
+            {new Date(bookingDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })}
+          </span>
         </span>
 
         <span className="flex items-center gap-2 text-sm md:text-md text-gray-600">

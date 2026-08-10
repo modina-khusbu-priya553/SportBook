@@ -1,11 +1,14 @@
 'use client'
 import React from 'react';
 import {AlertDialog, Button} from "@heroui/react";
+import { toast } from 'react-toastify';
 
 const DeleteFacilityCard = ({facilities, deleteFacilityAction}) => {
 
     const handleDelete = async(userId) =>{
-        return deleteFacilityAction(userId)
+        const deleteFacility = await deleteFacilityAction(userId)
+        toast.success('Delete successfully!');
+        return deleteFacility;
     }
     return (
         <div>

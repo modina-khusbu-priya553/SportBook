@@ -64,7 +64,7 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
       bookingDate: new Date(bookingDate),
       timeSlots: [...selectedSlots],
     };
-    console.log(bookingData);
+   
     await postBookingAction(bookingData);
     toast.success("Booking successful!");
   };

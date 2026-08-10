@@ -16,6 +16,7 @@ import {
 import { FaPen } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
   const {
@@ -51,7 +52,8 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
 
   const handleUpdateForm = async (formData) => {
     const updated = await updatedFacilityAction(userId, formData);
-    return updated;
+    toast.success('Updated successfully!');
+
   };
   return (
     <div>

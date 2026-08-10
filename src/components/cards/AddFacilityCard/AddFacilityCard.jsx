@@ -45,9 +45,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
       toast.success("Facility added successfully!");
       setTimeSlots([]);
       setCurrentSlot("");
-      setTimeout(() => {
-        router.push("/all-facilities");
-      }, 1500);
+      
     } else {
       toast.error("Failed to add facility.");
     }

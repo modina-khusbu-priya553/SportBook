@@ -2,6 +2,7 @@
 import { AlertDialog, Button } from "@heroui/react";
 
 const DeleteBookings = ({ bookings, deleteBookingsAction }) => {
+  
   const handleDelete = async (bookingId) => {
     const data = await deleteBookingsAction(bookingId);
     return data;
