@@ -11,9 +11,14 @@ const MyBookings = async () => {
   const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
+
+   // token
+    const {token} = await auth.api.getToken({
+      headers: await headers()
+    })
   const user = session?.user;
   const userId = user?.id;
-  const bookingDetails = await getBookings(userId);
+  const bookingDetails = await getBookings(userId, token);
 
   return (
     <div className="bg-[#F7F7F2]">

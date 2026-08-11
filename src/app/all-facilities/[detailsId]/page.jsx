@@ -5,10 +5,20 @@ import { MapPin, Users, Clock } from "lucide-react";
 import Image from "next/image";
 import BookingFormCard from "@/components/cards/BookingCard/BookingFormCard";
 import { postBookingData } from "@/app/lib/action";
+import { auth } from "@/app/lib/auth";
+import { headers } from "next/headers";
 
 const FacilitiesDetails = async ({ params }) => {
+  
   const { detailsId } = await params;
-  const facilityDetails = await getFacilityDetails(detailsId);
+
+  // token
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  
+  const facilityDetails = await getFacilityDetails(detailsId, token);
   const {
     name,
     sport_type,
