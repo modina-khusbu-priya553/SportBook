@@ -3,9 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/ShareComponents/Navbar";
 import Footer from "@/components/ShareComponents/Footer";
 import { ToastContainer} from 'react-toastify';
-import WhyChooseUs from "@/components/cards/Sections/WhyChooseUs";
-import PopularSports from "@/components/cards/Sections/PopularSports";
-import FeaturesSection from "@/components/cards/Sections/FeaturesSection";
+
 
 
 const josefin = Josefin_Sans({
@@ -28,9 +26,6 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <ToastContainer autoClose={1000}/>
-        <FeaturesSection></FeaturesSection> 
-        <WhyChooseUs></WhyChooseUs>
-        <PopularSports></PopularSports>
         <main>
            
           {children}

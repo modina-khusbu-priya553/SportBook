@@ -3,9 +3,9 @@ import React from 'react';
 
 const Loading = () => {
     return (
-       <div className="flex items-center gap-4">
-      <Spinner size="xl" className="text-success" />
-    </div>
+        <div className="flex items-center justify-center min-h-screen">
+            <Spinner size="xl" className="text-success" />
+        </div>
     );
 };
 
