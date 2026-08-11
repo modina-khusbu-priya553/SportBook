@@ -64,8 +64,8 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
       bookingDate: new Date(bookingDate),
       timeSlots: [...selectedSlots],
     };
-   
-    await postBookingAction(bookingData);
+    const { data: tokenData} = await authClient.token()
+    await postBookingAction(bookingData, tokenData?.token);
     toast.success("Booking successful!");
   };
 

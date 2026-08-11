@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 
 const AddFacilityCard = ({ postFacilityAction }) => {
+
   const router = useRouter();
 
   const [currentSlot, setCurrentSlot] = useState("");
@@ -34,12 +35,17 @@ const AddFacilityCard = ({ postFacilityAction }) => {
     setTimeSlots(timeSlots.filter((_, i) => i !== indexToRemove));
   };
 
+;
+
   // user info
   const { data } = authClient.useSession();
   const user = data?.user;
 
   const handleAddFacility = async (formData) => {
-    const result = await postFacilityAction(formData);
+    
+  // token
+    const { data: tokenData} = await authClient.token()
+    const result = await postFacilityAction(formData, tokenData?.token);
 
     if (result?.insertedId) {
       toast.success("Facility added successfully!");

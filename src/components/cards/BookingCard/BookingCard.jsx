@@ -7,7 +7,7 @@ import { FaRegClock, FaRegHeart, FaRegUser } from "react-icons/fa6";
 import DeleteBookings from "./DeleteBookings";
 import { getDeleteBooking } from "@/app/lib/action";
 
-const BookingCard = ({ bookings, deleteBookingsAction }) => {
+const BookingCard = ({ bookings }) => {
   const {
     image,
     name,

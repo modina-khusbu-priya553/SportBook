@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 const DeleteFacilityCard = ({facilities, deleteFacilityAction}) => {
 
     const handleDelete = async(userId) =>{
-        const deleteFacility = await deleteFacilityAction(userId)
+        const { data: tokenData} = await authClient.token()
+        const deleteFacility = await deleteFacilityAction(userId, tokenData?.token)
         toast.success('Delete successfully!');
         return deleteFacility;
     }

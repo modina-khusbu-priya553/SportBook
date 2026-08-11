@@ -23,15 +23,23 @@ const Navbar = () => {
   };
 
   const profileLinks = [
-    { href: "/my-bookings", label: "My Bookings", icon: <FaRegCalendarCheck /> },
+    {
+      href: "/my-bookings",
+      label: "My Bookings",
+      icon: <FaRegCalendarCheck />,
+    },
     { href: "/add-facility", label: "Add Facility", icon: <FaPlusCircle /> },
-    { href: "/manage-facilities", label: "Manage My Facilities", icon: <FaTools /> },
+    {
+      href: "/manage-facilities",
+      label: "Manage My Facilities",
+      icon: <FaTools />,
+    },
   ];
 
   const links = (
     <>
       <li>
-        <NavLink  href={"/"}>Home</NavLink>
+        <NavLink href={"/"}>Home</NavLink>
       </li>
       <li>
         <NavLink href={"/all-facilities"}>All Facilities</NavLink>
@@ -45,7 +53,6 @@ const Navbar = () => {
       <li>
         <NavLink href={"/manage-facilities"}>Manage Facilities</NavLink>
       </li>
-
     </>
   );
 
@@ -60,17 +67,38 @@ const Navbar = () => {
             aria-expanded={isMenuOpen}
           >
             <span className="sr-only">Menu</span>
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
 
           <div className="flex items-center gap-0.5">
-            <Image src={LogoName} alt="Logo" width={150} height={80} className="h-auto w-auto" />
+            <Image
+              src={LogoName}
+              alt="Logo"
+              width={150}
+              height={80}
+              className="h-auto w-auto"
+            />
           </div>
         </div>
 
@@ -79,53 +107,52 @@ const Navbar = () => {
 
         {/* desktop right side */}
         <div className="hidden items-center gap-4 md:flex">
-          {/* Profile - dropdown trigger */}
-          <div
-            className="relative"
-            tabIndex={0}
-            onBlur={(e) => {
-              if (!e.currentTarget.contains(e.relatedTarget)) {
-                setIsDropdownOpen(false);
-              }
-            }}
-          >
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1 cursor-pointer"
-            >
-              Profile
-              <FiChevronDown
-                className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 rounded-xl border border-separator bg-background shadow-lg py-2 z-50">
-                {profileLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100"
-                  >
-                    {link.icon}
-                    {link.label}
-                  </Link>
-                ))}
-                <button
-                    onClick={handleSignOut}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-gray-100 w-full text-left"
-                  >
-                    <FiLogOut />
-                    Sign Out
-                  </button>
-              </div>
-            )}
-          </div>
-
           {/* Avatar + Sign Out - always visible if logged in */}
           {user ? (
             <>
+              {/* Profile - dropdown trigger */}
+              <div
+                className="relative"
+                tabIndex={0}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    setIsDropdownOpen(false);
+                  }
+                }}
+              >
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center gap-1 cursor-pointer"
+                >
+                  Profile
+                  <FiChevronDown
+                    className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-separator bg-background shadow-lg py-2 z-50">
+                    {profileLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100"
+                      >
+                        {link.icon}
+                        {link.label}
+                      </Link>
+                    ))}
+                    <button
+                      onClick={handleSignOut}
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-gray-100 w-full text-left"
+                    >
+                      <FiLogOut />
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
               <Avatar>
                 <Avatar.Image alt={user?.name} src={user?.image} />
                 <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
@@ -162,7 +189,9 @@ const Navbar = () => {
             {links}
 
             <li>
-              <span className="font-semibold text-sm text-gray-500">Profile</span>
+              <span className="font-semibold text-sm text-gray-500">
+                Profile
+              </span>
               <ul className="flex flex-col gap-2 pl-3 mt-2">
                 {profileLinks.map((link) => (
                   <li key={link.href}>
@@ -187,8 +216,12 @@ const Navbar = () => {
                     <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
                   </Avatar>
                   <div>
-                    <p className="text-sm font-semibold truncate">{user?.name}</p>
-                    <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                    <p className="text-sm font-semibold truncate">
+                      {user?.name}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                      {user?.email}
+                    </p>
                   </div>
                 </li>
                 <li>
@@ -204,7 +237,10 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <Link className="text-[#16A34A] border-[#22C55E]" href={"/login"}>
+                  <Link
+                    className="text-[#16A34A] border-[#22C55E]"
+                    href={"/login"}
+                  >
                     Login
                   </Link>
                 </li>

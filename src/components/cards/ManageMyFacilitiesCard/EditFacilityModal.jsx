@@ -51,7 +51,10 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
   };
 
   const handleUpdateForm = async (formData) => {
-    const updated = await updatedFacilityAction(userId, formData);
+
+    // token
+    const { data: tokenData} = await authClient.token()
+    const updated = await updatedFacilityAction(userId, formData, tokenData?.token);
     toast.success('Updated successfully!');
 
   };

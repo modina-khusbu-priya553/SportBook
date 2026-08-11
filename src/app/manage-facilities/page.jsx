@@ -7,14 +7,21 @@ import EmptyCard from "@/components/cards/ManageMyFacilitiesCard/EmptyCard";
 import MyFacilities from "@/components/cards/ManageMyFacilitiesCard/MyFacilities";
 
 const ManageFacilities = async () => {
+
   // user info
   const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
+
   const user = session?.user;
   const userId = user?.id;
 
-  const myFacilities = await getMyFacilities(userId);
+  // token
+    const {token} = await auth.api.getToken({
+      headers: await headers()
+    })
+
+  const myFacilities = await getMyFacilities(userId, token);
 
   return (
     <div>

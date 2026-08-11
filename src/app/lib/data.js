@@ -31,9 +31,12 @@ export const getBookings = async (userId, token) =>{
 }
 
 // facility api only for login user
-export const getMyFacilities = async (userId) => {
+export const getMyFacilities = async (userId, token) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
         cache: 'no-store',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
     }
         
     )

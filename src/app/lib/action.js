@@ -5,13 +5,14 @@ import { redirect } from "next/navigation";
 
 // 1: post api for add facilities
 
-export const getPostData = async(formData) =>{
+export const getPostData = async(formData, token) =>{
     const newFacility = Object.fromEntries(formData.entries())
     newFacility.available_slots = formData.getAll("available_slots");
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facilities`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(newFacility),
 
@@ -24,11 +25,12 @@ export const getPostData = async(formData) =>{
 
 // post api for booking
 
-export const postBookingData = async(bookingData) =>{
+export const postBookingData = async(bookingData, token) =>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(bookingData),
 
@@ -46,9 +48,12 @@ export const postBookingData = async(bookingData) =>{
 };
 
 // delete api for booking
-export const getDeleteBooking = async(bookingId) =>{
+export const getDeleteBooking = async(bookingId, token) =>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`,{
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
     });
      const data = await res.json();
 
@@ -64,13 +69,14 @@ export const getDeleteBooking = async(bookingId) =>{
 
 // update api for manage facility
 
-export const getUpdateFacility = async(userId, formData) =>{
+export const getUpdateFacility = async(userId, formData, token) =>{
     const updatedFacility = Object.fromEntries(formData.entries())
     updatedFacility.available_slots = formData.getAll("available_slots");
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
         method: "PATCH",
          headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(updatedFacility),
     });
@@ -85,9 +91,12 @@ export const getUpdateFacility = async(userId, formData) =>{
     return data;
 }
 
-export const getDeleteFacility = async(userId) =>{
+export const getDeleteFacility = async(userId, token) =>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
-       method: "DELETE" 
+       method: "DELETE" ,
+       headers: {
+            Authorization: `Bearer ${token}`,
+        },
     });
     const data = await res.json();
 

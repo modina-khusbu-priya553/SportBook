@@ -4,7 +4,8 @@ import { AlertDialog, Button } from "@heroui/react";
 const DeleteBookings = ({ bookings, deleteBookingsAction }) => {
   
   const handleDelete = async (bookingId) => {
-    const data = await deleteBookingsAction(bookingId);
+    const { data: tokenData} = await authClient.token()
+    const data = await deleteBookingsAction(bookingId, tokenData?.token);
     return data;
   };
   return (
