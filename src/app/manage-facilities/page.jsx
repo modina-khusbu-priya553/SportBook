@@ -26,7 +26,7 @@ const ManageFacilities = async () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto py-10 md:py-20 px-5 gap-4 flex flex-col items-center justify-center">
-        <h2 className="md:text-5xl text-2xl font-bold text-blue-950">
+        <h2 className="md:text-3xl text-xl font-bold text-blue-950">
           Manage Your Facilities
         </h2>
 

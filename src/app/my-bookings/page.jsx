@@ -24,7 +24,7 @@ const MyBookings = async () => {
     <div className="bg-[#F7F7F2]">
       <div className="md:py-20 py-10 px-5 max-w-7xl mx-auto">
         <div className="flex items-center justify-center">
-          <h2 className="font-bold pb-8 text-2xl  text-blue-950 md:text-5xl">
+          <h2 className="font-bold pb-8 text-xl  text-blue-950 md:text-3xl">
             My Bookings
           </h2>
         </div>

@@ -93,7 +93,7 @@ export const getUpdateFacility = async(userId, formData, token) =>{
 
 export const getDeleteFacility = async(userId, token) =>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-facilities/${userId}`,{
-       method: "DELETE" ,
+       method: "DELETE",
        headers: {
             Authorization: `Bearer ${token}`,
         },

@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/app/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 
 const DeleteBookings = ({ bookings, deleteBookingsAction }) => {

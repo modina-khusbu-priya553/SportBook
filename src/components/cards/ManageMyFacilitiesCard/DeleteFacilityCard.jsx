@@ -2,6 +2,7 @@
 import React from 'react';
 import {AlertDialog, Button} from "@heroui/react";
 import { toast } from 'react-toastify';
+import { authClient } from '@/app/lib/auth-client';
 
 const DeleteFacilityCard = ({facilities, deleteFacilityAction}) => {
 

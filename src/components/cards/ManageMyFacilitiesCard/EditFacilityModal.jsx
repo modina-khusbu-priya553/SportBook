@@ -17,6 +17,7 @@ import { FaPen } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { authClient } from "@/app/lib/auth-client";
 
 const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
   const {
