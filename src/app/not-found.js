@@ -40,7 +40,10 @@ const NotFoundPage = () => {
                         <Link
                             href="/"
                             className="inline-flex items-center gap-2 
-                            rounded-xl border border-blue-950 py-4 px-2 md:px-7 md:py-3.5 text-base font-semibold text-blue-950 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-950 hover:text-white  hover:shadow-xl"
+                            rounded-xl border border-blue-950 py-4 px-2 
+                            md:px-7 md:py-3.5 text-base font-semibold text-blue-950 
+                            shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-950
+                             hover:text-white  hover:shadow-xl"
                         >
                             <span>←</span>
                             Back to Home

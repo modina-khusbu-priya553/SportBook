@@ -16,13 +16,17 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
+
+  const router = useRouter();
+  
   // user info
   const { data } = authClient.useSession();
   const user = data?.user;
 
-  console.log(user);
+ 
 
   const {
     _id,
@@ -64,9 +68,15 @@ const BookingFormCard = ({ facilityDetails, postBookingAction }) => {
       bookingDate: new Date(bookingDate),
       timeSlots: [...selectedSlots],
     };
-    const { data: tokenData} = await authClient.token()
-    await postBookingAction(bookingData, tokenData?.token);
-    toast.success("Booking successful!");
+    try {
+      const { data: tokenData } = await authClient.token();
+      await postBookingAction(bookingData, tokenData?.token);
+      toast.success("You Book successfully!");
+      router.push("/my-bookings"); 
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to book. Please try again.");
+    }
   };
 
   const handleRemoveSlot = (slot) => {

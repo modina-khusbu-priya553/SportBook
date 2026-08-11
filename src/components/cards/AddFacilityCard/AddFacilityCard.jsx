@@ -18,6 +18,7 @@ import { authClient } from "@/app/lib/auth-client";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 
+
 const AddFacilityCard = ({ postFacilityAction }) => {
 
   const router = useRouter();
@@ -51,6 +52,7 @@ const AddFacilityCard = ({ postFacilityAction }) => {
       toast.success("Facility added successfully!");
       setTimeSlots([]);
       setCurrentSlot("");
+      router.push("/manage-facilities")
       
     } else {
       toast.error("Failed to add facility.");

@@ -46,7 +46,7 @@ const MyFacilities = ({ facilities }) => {
         </div>
       </div>
       {/* Details */}
-      <div className="flex flex-col justify-between gap-4">
+      <div className="flex flex-col justify-between gap-3">
         <div className="space-y-2">
           <h2 className="md:text-lg  text-blue-950 font-semibold">{name}</h2>
           <p className="text-sm md:text-md text-gray-500">{description}</p>

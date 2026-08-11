@@ -1,12 +1,14 @@
 "use client";
 import { authClient } from "@/app/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
+import { toast } from "react-toastify";
 
 const DeleteBookings = ({ bookings, deleteBookingsAction }) => {
   
   const handleDelete = async (bookingId) => {
     const { data: tokenData} = await authClient.token()
     const data = await deleteBookingsAction(bookingId, tokenData?.token);
+    toast.error('You cancel booking successfully')
     return data;
   };
   return (

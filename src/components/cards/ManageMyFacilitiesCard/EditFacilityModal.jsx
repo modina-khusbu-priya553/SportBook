@@ -31,7 +31,6 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
     description,
     available_slots,
   } = facilities;
-  
 
   const [slots, setSlots] = useState(available_slots || []);
   const [newSlot, setNewSlot] = useState("");
@@ -52,12 +51,18 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
   };
 
   const handleUpdateForm = async (formData) => {
-
-    // token
-    const { data: tokenData} = await authClient.token()
-    const updated = await updatedFacilityAction(userId, formData, tokenData?.token);
-    toast.success('Updated successfully!');
-
+    try {
+      const { data: tokenData } = await authClient.token();
+      const updated = await updatedFacilityAction(
+        userId,
+        formData,
+        tokenData?.token,
+      );
+      toast.success("Updated successfully!");
+    } catch (error) {
+      console.error("Update failed:", error);
+      toast.error("Failed to update facility.");
+    }
   };
   return (
     <div>
@@ -202,7 +207,7 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
                         <FieldError />
                       </TextField>
 
-                    {/* slots */}
+                      {/* slots */}
                       <div className="md:col-span-2">
                         <Label>Available Slots</Label>
 

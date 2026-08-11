@@ -37,7 +37,7 @@ const ErrorPage = ({ error, reset }) => {
             {/* Try Again */}
             <button
               onClick={() => reset()}
-              className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-200 transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl sm:w-auto"
+              className="w-full rounded-xl bg-[#22C55E]  px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-green-900  transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl sm:w-auto"
             >
               Try Again
             </button>
@@ -45,7 +45,10 @@ const ErrorPage = ({ error, reset }) => {
             {/* Back Home */}
             <Link
               href="/"
-              className="w-full rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-50 sm:w-auto"
+              className="w-full rounded-xl 
+              border border-blue-950 bg-white px-6 py-3.5 
+              text-base font-semibold text-blue-950  transition-all 
+              duration-300 hover:-translate-y-1 hover:bg-blue-950 hover:text-white sm:w-auto"
             >
               Back to Home
             </Link>
