@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-     const router = useRouter
+     const router = useRouter();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     const handleLogin = async(e) =>{
@@ -25,7 +25,7 @@ const Login = () => {
         console.log(data, error)
 
         if(data){
-            router.push('/');
+            window.location.href = "/";
             router.refresh();
         }
         if(error){

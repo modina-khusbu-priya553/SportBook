@@ -39,7 +39,7 @@ const SignUp = () => {
     
 
     if (data) {
-      router.push("/");
+       window.location.href = "/";
       router.refresh();
     }
     if (error) {
