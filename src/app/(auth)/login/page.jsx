@@ -1,14 +1,14 @@
 'use client'
 import React from 'react';
-import {Button, FieldError, Form, Input, Label, Separator, TextField} from "@heroui/react";
+import {Button, Description, FieldError, Form, Input, InputGroup, Label, Separator, TextField} from "@heroui/react";
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
-import {Check} from "@gravity-ui/icons";
+import {Check, Eye, EyeSlash} from "@gravity-ui/icons";
 import { authClient } from '@/app/lib/auth-client';
 import { redirect } from 'next/navigation';
 
 const Login = () => {
-
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const handleLogin = async(e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -60,22 +60,54 @@ const Login = () => {
                             <Input placeholder="john@example.com" />
                             <FieldError />
                         </TextField>
-                        <TextField
-                            isRequired
-                            minLength={4}
-                            name="password"
-                            type="password"
-                            validate={(value) => {
-                            if (value.length < 4) {
-                                return "Password must be at least 4 characters";
-                            }
-                            return null;
-                            }}
-                        >
-                            <Label>Password</Label>
-                            <Input placeholder="Enter your password" />
-                            <FieldError />
-                        </TextField>
+                       <TextField
+                                     isRequired
+                                     minLength={6}
+                                     name="password"
+                                     validate={(value) => {
+                                       if (value.length < 6) {
+                                         return "Password must be at least 6 characters";
+                                       }
+                                       if (!/[A-Z]/.test(value)) {
+                                         return "Password must contain at least one uppercase letter";
+                                       }
+                                       if (!/[a-z]/.test(value)) {
+                                         return "Password must contain at least lowercase letter";
+                                       }
+                                       return null;
+                                     }}
+                                   >
+                                     <Label>Password</Label>
+                                     <InputGroup>
+                                       <InputGroup.Input
+                                         type={isPasswordVisible ? "text" : "password"}
+                                         placeholder="Enter your password"
+                                       />
+                                       <InputGroup.Suffix className="pe-0">
+                                         <Button
+                                           isIconOnly
+                                           aria-label={
+                                             isPasswordVisible ? "Hide password" : "Show password"
+                                           }
+                                           size="sm"
+                                           variant="ghost"
+                                           type="button"
+                                           onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+                                         >
+                                           {isPasswordVisible ? (
+                                             <Eye className="size-4" />
+                                           ) : (
+                                             <EyeSlash className="size-4" />
+                                           )}
+                                         </Button>
+                                       </InputGroup.Suffix>
+                                     </InputGroup>
+                                     <Description>
+                                       Must be at least 6 characters with 1 uppercase and 1 lowercase
+                                       letter
+                                     </Description>
+                                     <FieldError />
+                                   </TextField>
 
                         <div className="flex gap-2">
                             <Button type="submit" className="w-full bg-blue-950 rounded-md">
