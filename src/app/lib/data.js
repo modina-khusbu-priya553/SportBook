@@ -1,9 +1,11 @@
-export const getFacilitiesData = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facilities`,{
-        cache: 'no-store',
-    })
-    const data = await res.json()
-    return data
+// 1: facility data
+export const getFacilitiesData = async (search = "", sport_type = "") => {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/facilities?search=${search}&sport_type=${sport_type}`,
+        { cache: "no-store" }
+    );
+    const data = await res.json();
+    return data;
 }
 
 // 2: details api with id

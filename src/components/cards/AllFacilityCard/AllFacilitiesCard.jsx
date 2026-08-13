@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Button, Card } from "@heroui/react";
+import { Badge, Card } from "@heroui/react";
 import Image from "next/image";
 import { MdOutlineLocationOn } from "react-icons/md";
 import Link from "next/link";
