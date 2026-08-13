@@ -5,10 +5,12 @@ import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import {Check, Eye, EyeSlash} from "@gravity-ui/icons";
 import { authClient } from '@/app/lib/auth-client';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+     const router = useRouter
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    
     const handleLogin = async(e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -22,7 +24,8 @@ const Login = () => {
         console.log(data, error)
 
         if(data){
-            redirect('/');
+            router.push('/');
+            router.refresh();
         }
         if(error){
             alert(error.message)

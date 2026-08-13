@@ -8,8 +8,10 @@ import { authClient } from "@/app/lib/auth-client";
 import NavLink from "./NavLink";
 import { FiChevronDown, FiLogOut } from "react-icons/fi";
 import { FaRegCalendarCheck, FaPlusCircle, FaTools } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -18,8 +20,11 @@ const Navbar = () => {
 
   const handleSignOut = async () => {
     await authClient.signOut();
+    router.push("/");
+    router.refresh();
     setIsDropdownOpen(false);
     setIsMenuOpen(false);
+
   };
 
   const profileLinks = [

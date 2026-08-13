@@ -15,9 +15,12 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 
 const SignUp = () => {
+
+    const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const handleSignUp = async (e) => {
@@ -35,7 +38,8 @@ const SignUp = () => {
     
 
     if (data) {
-      redirect("/");
+      router.push("/");
+      router.refresh();
     }
     if (error) {
       alert(error.message);
