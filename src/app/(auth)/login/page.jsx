@@ -6,11 +6,12 @@ import Link from 'next/link';
 import {Check, Eye, EyeSlash} from "@gravity-ui/icons";
 import { authClient } from '@/app/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const Login = () => {
      const router = useRouter
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
-    
+
     const handleLogin = async(e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -28,7 +29,7 @@ const Login = () => {
             router.refresh();
         }
         if(error){
-            alert(error.message)
+            toast.error(error.message)
         }
     };
 

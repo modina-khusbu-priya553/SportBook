@@ -16,6 +16,7 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 const SignUp = () => {
@@ -42,7 +43,7 @@ const SignUp = () => {
       router.refresh();
     }
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
