@@ -8,7 +8,8 @@ import { authClient } from "@/app/lib/auth-client";
 import NavLink from "./NavLink";
 import { FiChevronDown, FiLogOut } from "react-icons/fi";
 import { FaRegCalendarCheck, FaPlusCircle, FaTools } from "react-icons/fa";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 
 const Navbar = () => {
   const router = useRouter();
