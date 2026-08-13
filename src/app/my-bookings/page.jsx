@@ -12,10 +12,12 @@ const MyBookings = async () => {
     headers: await headers(), // you need to pass the headers object.
   });
 
-   // token
-    const {token} = await auth.api.getToken({
-      headers: await headers()
-    })
+  // token
+  const tokenResult = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = tokenResult?.token;
+  
   const user = session?.user;
   const userId = user?.id;
   const bookingDetails = await getBookings(userId, token);
@@ -35,9 +37,7 @@ const MyBookings = async () => {
           <div className="grid grid-cols-1 gap-4 md:gap-6">
             {bookingDetails.map((bookings) => (
               <div key={bookings._id}>
-                <BookingCard
-                  bookings={bookings}
-                />
+                <BookingCard bookings={bookings} />
               </div>
             ))}
           </div>
