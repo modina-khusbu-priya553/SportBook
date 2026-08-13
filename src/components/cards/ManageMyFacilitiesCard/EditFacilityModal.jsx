@@ -18,6 +18,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { authClient } from "@/app/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
   const {
@@ -31,6 +32,8 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
     description,
     available_slots,
   } = facilities;
+
+   const router = useRouter();
 
   const [slots, setSlots] = useState(available_slots || []);
   const [newSlot, setNewSlot] = useState("");
@@ -59,6 +62,7 @@ const EditFacilityModal = ({ facilities, updatedFacilityAction }) => {
         tokenData?.token,
       );
       toast.success("Updated successfully!");
+      router.refresh();
     } catch (error) {
       console.error("Update failed:", error);
       toast.error("Failed to update facility.");

@@ -85,7 +85,7 @@ export const getUpdateFacility = async(userId, formData, token) =>{
 
      if(data.modifiedCount > 0){
         revalidatePath('/manage-facilities')
-        redirect('/manage-facilities')
+       
     }
 
     return data;
