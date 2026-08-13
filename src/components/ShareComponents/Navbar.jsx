@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button, Avatar } from "@heroui/react";
 import LogoName from "../../../public/asset/logoname.png";
+import Logo from "../../../public/asset/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
@@ -97,12 +98,19 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-0.5">   
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={37}
+              height={20}
+              className="h-auto w-auto"
+            />
             <Image
               src={LogoName}
               alt="Logo"
-              width={150}
-              height={80}
+              width={110}
+              height={10}
               className="h-auto w-auto"
             />
           </div>
