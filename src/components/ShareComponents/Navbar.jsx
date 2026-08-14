@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button, Avatar } from "@heroui/react";
 import LogoName from "../../../public/asset/logoname.png";
-import Logo from "../../../public/asset/logo.png";
+import Logo from "../../../public/asset/sportlogo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/app/lib/auth-client";
@@ -102,7 +102,7 @@ const Navbar = () => {
             <Image
               src={Logo}
               alt="Logo"
-              width={37}
+              width={100}
               height={20}
               className="h-auto w-auto"
             />
