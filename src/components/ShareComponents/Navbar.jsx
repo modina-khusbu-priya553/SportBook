@@ -102,7 +102,7 @@ const Navbar = () => {
             <Image
               src={Logo}
               alt="Logo"
-              width={100}
+              width={37}
               height={20}
               className="h-auto w-auto"
             />
